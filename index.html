@@ -7,9 +7,52 @@
     <link rel="stylesheet" href="Style/bootstrap.min.css" />
     <link rel="stylesheet" href="Style/all.min.css" />
     <link rel="stylesheet" href="Style/index.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+
     <title>ContactHub - Smart Contact Manager</title>
   </head>
   <body>
+    <nav class="navbar navbar-expand-lg bg-white">
+      <div class="container-lg container-fluid">
+        <div class="navbar-brand d-flex align-items-center">
+          <i
+            class="fa-solid fa-address-book d-flex justify-content-center align-items-center text-white me-1 me-sm-3"
+          ></i>
+          <div class="d-flex flex-column justify-content-between">
+            <h1 class="fw-bold my-auto">
+              Contact<span style="color: oklch(0.541 0.281 293.009)">Hub </span>
+            </h1>
+            <p class="h1-p my-auto d-none d-sm-flex">Smart Contact Manager</p>
+          </div>
+        </div>
+
+        <div class="navbar-nav flex-row ms-auto mb-0">
+          <button
+            class="add-contact fw-semibold border-0 text-white me-md-4 me-2"
+            type="submit"
+          >
+            <span class="fw-normal">+</span> Add
+            <span class="d-none d-sm-inline">Contact</span>
+          </button>
+          <i
+            class="fa-solid d-none fa-bell d-sm-flex justify-content-center align-items-center"
+          ></i>
+          <i
+            class="fa-solid d-none fa-gear d-sm-flex justify-content-center align-items-center"
+          ></i>
+          <img
+            src="img/Avatars/profile-picture.jpg"
+            class="profile-picture my-auto"
+            alt="Profile"
+          />
+        </div>
+      </div>
+    </nav>
+    <section class="main-card"></section>
+
     <script src="js/index.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
   </body>

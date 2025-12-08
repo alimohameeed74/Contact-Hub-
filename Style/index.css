@@ -8,11 +8,17 @@
     --two-rem: 2rem;
     --two_half-rem: 2.5rem;
     --three-rem: 3rem;
+    --v-8px: 8px;
     --v-12px: 12px;
+    --v-14px: 14px;
     --v-15px: 15px;
+    --v-18px: 18px;
     --v-20px: 20px;
     --v-22px: 22px;
     --v-24px: 24px;
+    --v-25px: 25px;
+    --v-30px: 30px;
+    --v-32px: 32px;
     --fz-10: 10px;
     --fz-12: 12px;
     --fz-14: 14px;
@@ -31,21 +37,83 @@
     --fw-500: 500;
     --fw-600: 600;
     --fw-700: 700;
-    /* --main-color:oklch(0.21 0.034 264.665);
-    --sec-color: oklch(0.446 0.03 256.802); */
 }
 
-body{
-    font-family: system-ui, sans-serif;
+
+
+body {
+    font-family: 'Inter', sans-serif;
 }
 
+.custom-container{
+    padding-inline: 0;
+}
 
 /* End of Basic Configurations */
 
 
 /* navBar */
 
+.navbar{
+ border-bottom: #F5F7F9 solid 2px !important;
+}
 
+.fa-address-book {
+    background: linear-gradient(to right, #7D24FD,#5139F7);
+    width: 15px;
+    height: 15px;
+    box-shadow: 0 5px 10px -7px gray;
+    padding: var(--v-18px);
+    border-radius: var(--half-rem);
+}
+
+h1{
+    font-size: var(--fz-16);
+    color: oklch(0.21 0.034 264.665);
+}
+
+.h1-p{
+    font-size: var(--fz-12);
+    font-weight: var(--fw-500);
+    color: oklch(0.551 0.027 264.364);
+}
+
+.profile-picture{
+       width: 40px;
+    height: 40px;
+    border-radius: var(--one-rem);
+    box-shadow: 0 5px 10px -7px gray;
+}
+
+
+.fa-bell,
+.fa-gear{
+    color: #6A7282;
+    background-color: transparent;
+    padding-inline: var(--v-20px);
+    border-radius: var(--v-12px)
+}
+
+.fa-bell:hover,
+.fa-gear:hover{
+    color: #364153;
+    background-color: #F3F4F6;
+}
+
+
+.add-contact{
+    background: linear-gradient(to right, #7D24FD,#5139F7);
+    transition: all 0.3s ease;
+    padding-inline: var(--v-12px);
+    padding-block: var(--v-8px);
+    border-radius: var(--v-12px);
+    font-size: var(--fz-14);
+}
+
+.add-contact:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 9px 2px rgba(139, 92, 246, 0.3);
+}
 /* End Of navBar */
 
 /* Main Card */
@@ -63,6 +131,23 @@ body{
 
 
 @media (min-width: 576px) {
+    .custom-container{
+    padding-inline: var(--v-32px);
+}
+h1{
+    font-size: var(--fz-24);
+}
+
+.add-contact{
+    padding-inline: var(--v-25px);
+  
+}
+
+
+.fa-address-book {
+    border-radius: var(--v-14px);
+    padding: var(--v-24px);
+}
 
 
 
@@ -70,12 +155,16 @@ body{
 
 @media (min-width: 768px) {
 
-
+ .fa-bell,
+ .fa-gear{
+    margin-right: var(--v-20px);
+}
 
 }
 
 @media (min-width: 992px) {
 
+   
 }
 
 @media (min-width: 1200px) {
