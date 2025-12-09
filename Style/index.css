@@ -9,6 +9,7 @@
     --two_half-rem: 2.5rem;
     --three-rem: 3rem;
     --v-8px: 8px;
+    --v-10px: 10px;
     --v-12px: 12px;
     --v-14px: 14px;
     --v-15px: 15px;
@@ -20,6 +21,7 @@
     --v-30px: 30px;
     --v-32px: 32px;
     --fz-10: 10px;
+    --fz-11: 11px;
     --fz-12: 12px;
     --fz-14: 14px;
     --fz-16: 16px;
@@ -81,7 +83,7 @@ h1{
 .profile-picture{
        width: 40px;
     height: 40px;
-    border-radius: var(--one-rem);
+    border-radius: var(--v-10px);
     box-shadow: 0 5px 10px -7px gray;
 }
 
@@ -91,7 +93,8 @@ h1{
     color: #6A7282;
     background-color: transparent;
     padding-inline: var(--v-20px);
-    border-radius: var(--v-12px)
+    border-radius: var(--v-12px);
+    transition: all 0.3s ease;
 }
 
 .fa-bell:hover,
@@ -117,6 +120,145 @@ h1{
 /* End Of navBar */
 
 /* Main Card */
+
+.main-card{
+    background: linear-gradient(to right, #F8FAFC, #EEF5FD);
+}
+
+.info-card{
+    padding:  var(--v-20px);
+    transition: all 0.3s ease;
+    box-shadow: 0 0 5px 2px #E4E5E7;
+}
+
+.info-card:hover {
+    box-shadow: 0 6px 10px -5px #DFE1E2;
+}
+.info-card .icon{
+    height: 15px;
+    padding: var(--v-24px);
+    border-radius: var(--v-12px);
+}
+
+.fa-users{
+    background: linear-gradient(to right, #2374FF,#1B68FE);
+    box-shadow: 0 7px 10px 2px #d4e5fd;
+}
+
+.fa-star{
+    background: linear-gradient(to right, #FFA100,#FF8300);
+    box-shadow: 0 7px 10px 2px #FFEAC8;
+    
+}
+.fa-heart-pulse{
+    background: linear-gradient(to right, #F91447,#EF002D);
+    box-shadow: 0 7px 10px 2px #FFCFDB;
+    
+}
+
+
+.info-card .info-name{
+    font-size: var(--fz-12);
+    color: oklch(0.551 0.027 264.364);
+}
+
+
+.info-card .info-number{
+    color: oklch(0.21 0.034 264.665);
+    font-size: var(--fz-24);
+    font-weight: var(--fw-500);
+}
+
+.title{
+    font-size: var(--fz-30);
+    color: oklch(0.21 0.034 264.665);
+}
+
+
+.title-des{
+    font-size: var(--fz-14);
+    color: oklch(0.551 0.027 264.364);
+}
+
+.contact-search{
+    border: 1px solid #e3e7f5;
+    transition: all 0.3s ease;
+}
+
+.contact-search:focus-within{
+    border: 1px solid #B895FF;
+}
+
+.contact-search .form-control {
+    display: inline;
+    width: 88%;
+    padding: 0;
+    color: #A6A1AF !important;
+    border: transparent !important;
+}
+
+.form-control::placeholder
+,.fa-magnifying-glass{
+    color: #99A1AF;
+    font-size: var(--fz-12);
+    
+}
+
+.contact-search .form-control:focus {
+   box-shadow: 0 0 0 0 transparent ;
+}
+
+
+.favorites-section
+{
+    border: 2px solid gainsboro;
+   background: linear-gradient(to right, #FFFBEB,#FFF7ED);
+
+}
+
+.emergency-section{
+    border: 2px solid gainsboro;
+   background: linear-gradient(to right, #FFF1F2,#FEF2F2);
+
+}
+
+
+
+
+.favorites-section .icon,
+.emergency-section .icon {
+    height: var(--v-15px);
+    padding: var(--v-20px);
+    border-radius: 8px;
+    font-size: var(--v-15px);
+}
+
+
+.favorites-section .name
+,.emergency-section .name{
+    color:oklch(0.21 0.034 264.665);
+    font-size: var(--fz-16);
+
+}
+
+.favorites-section .des,
+.emergency-section .des{
+    color:oklch(0.551 0.027 264.364);
+    font-size: var(--fz-11);
+}
+
+.no-favorites,
+.no-emergency{
+    font-size: var(--fz-14);
+    height: 150px;
+    color:oklch(0.707 0.022 261.325);
+    border-bottom-right-radius: var(--one-rem);
+    border-bottom-left-radius: var(--one-rem);
+}
+.justify-border{
+    border-bottom:2px  solid gainsboro;
+}
+
 
 
 
@@ -151,6 +293,18 @@ h1{
 
 
 
+.contact-search .form-control {
+    width: 94%;
+}
+
+.form-control::placeholder
+,.fa-magnifying-glass{
+    font-size: var(--fz-14);
+    
+}
+
+
+
 }
 
 @media (min-width: 768px) {
@@ -159,6 +313,12 @@ h1{
  .fa-gear{
     margin-right: var(--v-20px);
 }
+
+
+.contact-search .form-control {
+    width: 96%;
+}
+
 
 }
 

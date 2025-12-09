@@ -51,7 +51,119 @@
         </div>
       </div>
     </nav>
-    <section class="main-card"></section>
+    <section class="main-card py-4">
+      <div class="container-lg container-fluid">
+        <div class="row g-3 mb-5">
+          <div class="col-sm-6 col-md-4">
+            <div
+              class="info-card bg-white rounded-4 d-flex justify-content-start align-items-center"
+            >
+              <div class="me-3">
+                <i
+                  class="fa-solid icon fa-users d-flex justify-content-center align-items-center text-white"
+                ></i>
+              </div>
+              <div class="d-flex flex-column justify-content-center">
+                <p class="info-name mb-0">TOTAL</p>
+                <h2 class="info-number mb-0 fw-bold">2</h2>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-md-4">
+            <div
+              class="info-card bg-white rounded-4 d-flex justify-content-start align-items-center"
+            >
+              <div class="me-3">
+                <i
+                  class="fa-solid icon fa-star d-flex justify-content-center align-items-center text-white"
+                ></i>
+              </div>
+              <div class="d-flex flex-column justify-content-center">
+                <p class="info-name mb-0">FAVORITES</p>
+
+                <h2 class="info-number mb-0 fw-bold">1</h2>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-md-4">
+            <div
+              class="info-card bg-white rounded-4 d-flex justify-content-start align-items-center"
+            >
+              <div class="me-3">
+                <i
+                  class="fa-solid icon fa-heart-pulse d-flex justify-content-center align-items-center text-white"
+                ></i>
+              </div>
+              <div class="d-flex flex-column justify-content-center">
+                <p class="info-name mb-0">EMERGENCY</p>
+
+                <h2 class="info-number mb-0 fw-bold">0</h2>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row gx-4 gy-3">
+          <div class="col-xl-9">
+            <h2 class="fw-bold title">All Contacts</h2>
+            <p class="fw-normal title-des">
+              Manage and organize your
+              <span id="numOfContacts">0</span> contacts
+            </p>
+            <div class="contact-search rounded-3 bg-white p-3">
+              <i class="fa-solid fa-magnifying-glass"></i>
+              <input
+                class="form-control me-2"
+                type="search"
+                placeholder="Search by name, phone, or email..."
+                aria-label="Search"
+              />
+            </div>
+          </div>
+          <div class="col-xl-3">
+            <div class="mb-4 rounded-4 favorites-section">
+              <div
+                class="py-3 d-flex justify-content-start justify-border px-3"
+              >
+                <i
+                  class="fa-solid icon d-flex justify-content-center align-items-center fa-star text-white me-2"
+                ></i>
+                <div>
+                  <h3 class="fw-semibold name mb-0">Favorites</h3>
+                  <p class="fw-normal des mb-0">
+                    Quick access to starred contacts
+                  </p>
+                </div>
+              </div>
+              <div
+                class="bg-white d-flex align-items-center justify-content-center fw-normal no-favorites"
+              >
+                No favorites yet
+              </div>
+            </div>
+            <div class="mb-2 rounded-4 emergency-section">
+              <div
+                class="py-3 d-flex justify-content-start justify-border px-3"
+              >
+                <i
+                  class="fa-solid icon d-flex justify-content-center align-items-center fa-heart-pulse text-white me-2"
+                ></i>
+                <div>
+                  <h3 class="fw-semibold name mb-0">Emergency</h3>
+                  <p class="fw-normal des mb-0">
+                    Important contacts for urgent calls
+                  </p>
+                </div>
+              </div>
+              <div
+                class="bg-white d-flex align-items-center justify-content-center fw-normal no-emergency"
+              >
+                No emergency contacts
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <script src="js/index.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
