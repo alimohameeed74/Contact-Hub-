@@ -32,11 +32,14 @@
         <div class="navbar-nav flex-row ms-auto mb-0">
           <button
             class="add-contact fw-semibold border-0 text-white me-md-4 me-2"
-            type="submit"
+            type="button"
+            data-bs-toggle="modal"
+            data-bs-target="#exampleModal"
           >
             <span class="fw-normal">+</span> Add
             <span class="d-none d-sm-inline">Contact</span>
           </button>
+
           <i
             class="fa-solid d-none fa-bell d-sm-flex justify-content-center align-items-center"
           ></i>
@@ -48,6 +51,165 @@
             class="profile-picture my-auto"
             alt="Profile"
           />
+        </div>
+      </div>
+      <div
+        class="modal fade"
+        id="exampleModal"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fw-bold" id="exampleModalLabel">
+                Add New Contact
+              </h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <div class="mb-3">
+                <div class="rounded-3 bg-white">
+                  <label class="mb-2" for="fullName">
+                    Full Name
+                    <span class="text-danger">*</span>
+                  </label>
+                  <input
+                    class="form-control"
+                    type="text"
+                    placeholder="Enter Full Name"
+                    aria-label="fullName"
+                    id="fullName"
+                  />
+                </div>
+              </div>
+              <div class="mb-3">
+                <div class="rounded-3 bg-white">
+                  <label class="mb-2" for="phoneNumber">
+                    Phone Number
+                    <span class="text-danger">*</span>
+                  </label>
+                  <input
+                    class="form-control"
+                    type="tel"
+                    placeholder="e.g., 01283217414"
+                    aria-label="phoneNumber"
+                    id="phoneNumber"
+                  />
+                </div>
+              </div>
+              <div class="mb-3">
+                <div class="rounded-3 bg-white">
+                  <label class="mb-2" for="emailAddress"> Email Address </label>
+                  <input
+                    class="form-control"
+                    type="email"
+                    placeholder="name@example.com"
+                    aria-label=" emailAddress"
+                    id=" emailAddress"
+                  />
+                </div>
+              </div>
+              <div class="mb-3">
+                <div class="rounded-3 bg-white">
+                  <label class="mb-2" for="Address"> Address </label>
+                  <input
+                    class="form-control"
+                    type="text"
+                    placeholder="Enter Address"
+                    aria-label=" Address"
+                    id=" Address"
+                  />
+                </div>
+              </div>
+              <div class="mb-3">
+                <div class="rounded-3 bg-white">
+                  <label class="mb-2" for="group"> Group </label>
+
+                  <select
+                    id="group"
+                    class="form-select"
+                    aria-label="Default select example"
+                  >
+                    <option selected>select a group</option>
+                    <option value="1">Family</option>
+                    <option value="2">Friends</option>
+                    <option value="3">Work</option>
+                    <option value="4">School</option>
+                    <option value="5">Others</option>
+                  </select>
+                </div>
+              </div>
+              <div class="mb-3">
+                <div class="rounded-3 bg-white">
+                  <label class="mb-2" for="notes"> Notes </label>
+                  <textarea
+                    class="form-control"
+                    type="text"
+                    placeholder="Enter notes about this contact"
+                    aria-label="notes"
+                    id="notes"
+                    rows="2"
+                    cols="45"
+                    style="resize: none"
+                  ></textarea>
+                </div>
+              </div>
+              <div
+                class="d-flex justify-content-between justify-content-sm-start"
+              >
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value="favorite"
+                    name="favorite"
+                    id="favorite-checkbox"
+                  />
+                  <label class="form-check-label me-3" for="favorite-checkbox">
+                    <i class="fa-solid fa-star"></i> Favorite
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value="emergency"
+                    name="emergency"
+                    id="emergency-checkbox"
+                  />
+                  <label class="form-check-label" for="emergency-checkbox">
+                    <i class="fa-solid fa-heart-pulse"></i> Emergency
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div
+              class="modal-footer justify-content-center flex-column-reverse flex-sm-row"
+            >
+              <button
+                type="button"
+                class="cancel-contact fw-semibold border-0 text-white bg-danger"
+                data-bs-dismiss="modal"
+              >
+                Cancel
+              </button>
+              <button
+                type="button"
+                class="save-contact fw-semibold border-0 text-white bg-success"
+                onclick="addContact();"
+              >
+                <i class="fa-solid fa-check me-2 text-white"></i>
+                <span class="fw-normal">Save Contact</span>
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </nav>

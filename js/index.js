@@ -5,7 +5,9 @@
 
 
 // Define Main Functions
-
+function addContact(){
+    console.log("dkddk");
+}
 
 
 
