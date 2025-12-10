@@ -13,11 +13,13 @@
     --v-12px: 12px;
     --v-14px: 14px;
     --v-15px: 15px;
+    --v-16px: 16px;
     --v-18px: 18px;
     --v-20px: 20px;
     --v-22px: 22px;
     --v-24px: 24px;
     --v-25px: 25px;
+    --v-26px: 26px;
     --v-30px: 30px;
     --v-32px: 32px;
     --fz-10: 10px;
@@ -145,12 +147,12 @@ h1{
     box-shadow: 0 7px 10px 2px #d4e5fd;
 }
 
-.main-card .fa-star{
+#info-cards .fa-star{
     background: linear-gradient(to right, #FFA100,#FF8300);
     box-shadow: 0 7px 10px 2px #FFEAC8;
     
 }
-.main-card .fa-heart-pulse{
+#info-cards .fa-heart-pulse{
     background: linear-gradient(to right, #F91447,#EF002D);
     box-shadow: 0 7px 10px 2px #FFCFDB;
     
@@ -224,6 +226,20 @@ h1{
 
 
 
+.favorites-section .fa-star{
+    background: linear-gradient(to right, #FFA100,#FF8300);
+    box-shadow: 0 7px 10px 2px #FFEAC8;
+    
+}
+.emergency-section .fa-heart-pulse{
+    background: linear-gradient(to right, #F91447,#EF002D);
+    box-shadow: 0 7px 10px 2px #FFCFDB;
+    
+}
+
+
+
+
 
 .favorites-section .icon,
 .emergency-section .icon {
@@ -232,6 +248,7 @@ h1{
     border-radius: 8px;
     font-size: var(--v-15px);
 }
+
 
 
 .favorites-section .name
@@ -258,6 +275,267 @@ h1{
 .justify-border{
     border-bottom:2px  solid gainsboro;
 }
+
+.has-favorites,
+.has-emergency{
+    height: 150px;
+    border-bottom-right-radius: var(--one-rem);
+    border-bottom-left-radius: var(--one-rem);
+}
+
+.favorite-item,
+.emergency-item{
+    cursor: pointer;
+    background-color: #F9FAFB;
+    transition: 0.3s all ease;
+    border: gainsboro solid 1px;
+}
+
+.favorite-item:hover{
+    background-color: #FFFBEB;
+    border: #FEF0B8 solid 1px;
+}
+.emergency-item:hover{
+    background-color: #FFF1F2;
+    border: #FFDFE2 solid 1px;
+}
+
+.favorite-item .fa-phone{
+    color: #00BC7D;
+    background-color: #D0FAE5;
+}
+
+.favorite-item:hover .fa-phone
+{
+    color: white;
+    background-color: #00BC7D;
+}
+
+
+.emergency-item .fa-phone{
+    color: #FF2056;
+    background-color: #FFE4E6;
+}
+
+.emergency-item:hover .fa-phone{
+    color: white;
+    background-color: #FF2056;
+}
+
+.favorite-item .fa-phone ,
+.emergency-item .fa-phone {
+    transition: 0.3s all ease;
+    padding-inline: var(--v-18px);
+    font-size: var(--fz-14);
+    padding-block: var(--v-12px);
+}
+
+
+.favorite-item .name,
+.emergency-item .name
+{
+    font-size: var(--fz-14);
+    color: oklch(0.21 0.034 264.665);
+}
+
+.favorite-item .des,
+.emergency-item .des{
+    font-size: var(--fz-12);
+    color: oklch(0.551 0.027 264.364);
+}
+
+.favorite-item .icon ,
+.emergency-item .icon {
+    height: 15px;
+    padding-inline: var(--v-16px);
+    border-radius: var(--v-10px);
+    background: linear-gradient(to right, #F91660,#EE006D);
+    padding-block: var(--v-22px);
+    font-size: var(--fz-14);
+     
+
+}
+
+.has-favorites::-webkit-scrollbar,
+.has-emergency::-webkit-scrollbar {
+    display: none;
+}
+
+.has-favorites,
+.has-emergency {
+    -ms-overflow-style: none;  
+    scrollbar-width: none;    
+    overflow-y: scroll;
+}
+
+
+
+.contact-card{
+    padding:  var(--v-20px);
+    transition: all 0.3s ease;
+    box-shadow: 0 0 5px 2px #E4E5E7;
+}
+
+.contact-card:hover {
+    box-shadow: 0 6px 10px -5px #DFE1E2;
+}
+.contact-card .icon{
+    height: 15px;
+    padding-inline: var(--v-26px);
+    border-radius: var(--v-10px);
+    background: linear-gradient(to right, #F91660,#EE006D);
+    padding-block: var(--v-30px);
+    font-size: var(--fz-14);
+}
+
+
+.contacts-container{
+    height: 500px;
+}
+
+.contacts-container::-webkit-scrollbar {
+    display: none;
+}
+
+.contacts-container {
+    -ms-overflow-style: none;  
+    scrollbar-width: none;    
+    overflow-y: scroll;
+}
+
+
+
+
+
+
+.contact-card .contact-name{
+    font-size: var(--fz-16);
+    color: oklch(0.551 0.027 264.364);
+    color:oklch(0.21 0.034 264.665);
+}
+
+
+.contact-card .contact-number{
+    color: oklch(0.21 0.034 264.665);
+    font-size: var(--fz-14);
+    color: oklch(0.551 0.027 264.364);
+}
+
+.contact-card .icon2 {
+    transition: 0.3s all ease;
+    padding-inline: var(--v-14px);
+    font-size: var(--fz-12);
+    padding-block: var(--v-10px);
+}
+
+.contact-card .fa-phone{
+    color: #155DFC;
+    background-color: #DBEAFE;
+}
+
+.contact-card .fa-envelope{
+    color: #7F22FE;
+    background-color: #EDE9FE;
+}
+.contact-card .fa-location-dot{
+    color: #009966;
+    background-color: #D0FAE5;
+}
+
+
+.contact-card .icon2-des{
+    color: oklch(0.446 0.03 256.802);
+    font-size: var(--fz-14);
+}
+
+
+.group-type{
+    background-color: #FEF3C6;
+    color: oklch(0.555 0.163 48.998);
+    font-size: var(--fz-11);
+    font-weight: var(--fw-500)
+}
+
+.contact-card .emergency-entered .fa-heart-pulse{
+    font-size: var(--fz-14);
+    color: oklch(0.586 0.253 17.585);
+}
+
+.contact-card .emergency-entered {
+    background-color: #FFF1F2;
+    font-weight: var(--fw-500);
+}
+
+.emergency-choosed{
+    color: oklch(0.586 0.253 17.585);
+    font-size: var(--fz-11);
+}
+
+.contact-card-footer{
+    border-top: solid 2px #F7F7F9;
+}
+
+.contact-card-footer .fa-phone{
+    color: #00BC7D;
+    background-color: #D0FAE5;
+}
+
+.contact-card-footer .fa-phone:hover 
+{
+    color: white;
+    background-color: #00BC7D;
+}
+
+.contact-card-footer .fa-envelope{
+    color: #7F22FE;
+    background-color: #EDE9FE;
+}
+
+.contact-card-footer .fa-envelope:hover 
+{
+    color: white;
+    background-color: #7F22FE;
+}
+.contact-card-footer .fa-star{
+    color: #FFB900;
+    background-color: #FFFBEB;
+}
+
+.contact-card-footer .fa-star:hover 
+{
+    background-color: #FEF3C6;
+}
+.contact-card-footer .fa-heart-pulse{
+    color: oklch(0.586 0.253 17.585);
+    background-color: #FFF1F2;
+}
+
+.contact-card-footer .fa-heart-pulse:hover 
+{
+    color: white;
+    background-color: oklch(0.586 0.253 17.585);
+}
+
+.contact-card-footer .fa-pen,
+.contact-card-footer .fa-trash{
+    color: #6A7282;
+    background-color: transparent;
+}
+
+.contact-card-footer .fa-pen:hover 
+{
+    color: #4F39F6;
+    background-color: #EEF2FF;
+}
+
+
+.contact-card-footer .fa-trash:hover 
+{
+    color: white;
+    background-color: #EC003F;
+}
+
+
 
 /* End Of Main Card */
 

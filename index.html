@@ -106,7 +106,11 @@
               </div>
               <div class="mb-3">
                 <div class="rounded-3 bg-white">
-                  <label class="mb-2" for="emailAddress"> Email Address </label>
+                  <label class="mb-2" for="emailAddress">
+                    Email Address
+                    <span class="text-danger">*</span>
+                  </label>
+
                   <input
                     class="form-control"
                     type="email"
@@ -118,7 +122,10 @@
               </div>
               <div class="mb-3">
                 <div class="rounded-3 bg-white">
-                  <label class="mb-2" for="Address"> Address </label>
+                  <label class="mb-2" for="Address">
+                    Address
+                    <span class="text-danger">*</span>
+                  </label>
                   <input
                     class="form-control"
                     type="text"
@@ -130,7 +137,10 @@
               </div>
               <div class="mb-3">
                 <div class="rounded-3 bg-white">
-                  <label class="mb-2" for="group"> Group </label>
+                  <label class="mb-2" for="group">
+                    Group
+                    <span class="text-danger">*</span>
+                  </label>
 
                   <select
                     id="group"
@@ -217,7 +227,7 @@
     </nav>
     <section class="main-card py-4">
       <div class="container-lg container-fluid">
-        <div class="row g-3 mb-5">
+        <div id="info-cards" class="row g-3 mb-5">
           <div class="col-sm-6 col-md-4">
             <div
               class="info-card bg-white rounded-4 d-flex justify-content-start align-items-center"
@@ -282,6 +292,314 @@
                 aria-label="Search"
               />
             </div>
+            <div class="contacts-container my-4 py-2">
+              <div class="row gx-3 gy-3 mt-3">
+                <div class="col-sm-6">
+                  <div
+                    class="contact-card bg-white rounded-4 d-flex justify-content-start align-items-start flex-column"
+                  >
+                    <div class="mb-3 d-flex">
+                      <span
+                        class="icon d-flex justify-content-center align-items-center text-white me-3 fw-bold"
+                        >A</span
+                      >
+                      <div class="d-flex flex-column justify-content-center">
+                        <h2 class="contact-name fw-semibold">ali</h2>
+                        <p
+                          class="contact-number mb-0 fw-normal d-flex align-items-center"
+                        >
+                          <i
+                            class="fa-solid rounded-2 fa-phone icon2 d-flex justify-content-center align-items-center me-2"
+                          ></i>
+                          01283217414
+                        </p>
+                      </div>
+                    </div>
+                    <div class="mb-3 d-flex align-items-center">
+                      <i
+                        class="fa-solid rounded-2 fa-envelope icon2 d-flex justify-content-center align-items-center me-2"
+                      ></i>
+                      <span class="icon2-des fw-normal">
+                        dkakdkadkadk@leeo.com
+                      </span>
+                    </div>
+                    <div class="mb-3 d-flex align-items-center">
+                      <i
+                        class="fa-solid rounded-2 fa-location-dot icon2 d-flex justify-content-center align-items-center me-2"
+                      ></i>
+                      <span class="icon2-des fw-normal"> dksdksdsd </span>
+                    </div>
+                    <div
+                      class="mb-3 d-flex align-items-center justify-content-start"
+                    >
+                      <span class="group-type rounded-3 p-2 me-2 fw-normal">
+                        School
+                      </span>
+                      <span class="rounded-3 d-flex p-2 emergency-entered">
+                        <i
+                          class="fa-solid fa-heart-pulse d-flex justify-content-center align-items-center me-2"
+                        ></i>
+                        <span class="emergency-choosed">Emergency</span>
+                      </span>
+                    </div>
+                    <div
+                      class="contact-card-footer py-2 d-flex justify-content-between w-100"
+                    >
+                      <div class="d-flex">
+                        <i
+                          class="fa-solid rounded-2 fa-phone icon2 d-flex justify-content-center align-items-center me-2"
+                        ></i>
+                        <i
+                          class="fa-solid rounded-2 fa-envelope icon2 d-flex justify-content-center align-items-center me-2"
+                        ></i>
+                      </div>
+                      <div class="d-flex">
+                        <i
+                          class="fa-solid rounded-2 fa-star icon2 d-flex justify-content-center align-items-center me-2"
+                        ></i>
+                        <i
+                          class="fa-solid rounded-2 fa-heart-pulse icon2 d-flex justify-content-center align-items-center me-2"
+                        ></i>
+                        <i
+                          class="fa-solid rounded-2 fa-pen icon2 d-flex justify-content-center align-items-center me-2"
+                        ></i>
+                        <i
+                          class="fa-solid rounded-2 fa-trash icon2 d-flex justify-content-center align-items-center me-2"
+                        ></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div
+                    class="contact-card bg-white rounded-4 d-flex justify-content-start align-items-start flex-column"
+                  >
+                    <div class="mb-3 d-flex">
+                      <span
+                        class="icon d-flex justify-content-center align-items-center text-white me-3 fw-bold"
+                        >A</span
+                      >
+                      <div class="d-flex flex-column justify-content-center">
+                        <h2 class="contact-name fw-semibold">ali</h2>
+                        <p
+                          class="contact-number mb-0 fw-normal d-flex align-items-center"
+                        >
+                          <i
+                            class="fa-solid rounded-2 fa-phone icon2 d-flex justify-content-center align-items-center me-2"
+                          ></i>
+                          01283217414
+                        </p>
+                      </div>
+                    </div>
+                    <div class="mb-3 d-flex align-items-center">
+                      <i
+                        class="fa-solid rounded-2 fa-envelope icon2 d-flex justify-content-center align-items-center me-2"
+                      ></i>
+                      <span class="icon2-des fw-normal">
+                        dkakdkadkadk@leeo.com
+                      </span>
+                    </div>
+                    <div class="mb-3 d-flex align-items-center">
+                      <i
+                        class="fa-solid rounded-2 fa-location-dot icon2 d-flex justify-content-center align-items-center me-2"
+                      ></i>
+                      <span class="icon2-des fw-normal"> dksdksdsd </span>
+                    </div>
+                    <div
+                      class="mb-3 d-flex align-items-center justify-content-start"
+                    >
+                      <span class="group-type rounded-3 p-2 me-2 fw-normal">
+                        School
+                      </span>
+                      <span class="rounded-3 d-flex p-2 emergency-entered">
+                        <i
+                          class="fa-solid fa-heart-pulse d-flex justify-content-center align-items-center me-2"
+                        ></i>
+                        <span class="emergency-choosed">Emergency</span>
+                      </span>
+                    </div>
+                    <div
+                      class="contact-card-footer py-2 d-flex justify-content-between w-100"
+                    >
+                      <div class="d-flex">
+                        <i
+                          class="fa-solid rounded-2 fa-phone icon2 d-flex justify-content-center align-items-center me-2"
+                        ></i>
+                        <i
+                          class="fa-solid rounded-2 fa-envelope icon2 d-flex justify-content-center align-items-center me-2"
+                        ></i>
+                      </div>
+                      <div class="d-flex">
+                        <i
+                          class="fa-solid rounded-2 fa-star icon2 d-flex justify-content-center align-items-center me-2"
+                        ></i>
+                        <i
+                          class="fa-solid rounded-2 fa-heart-pulse icon2 d-flex justify-content-center align-items-center me-2"
+                        ></i>
+                        <i
+                          class="fa-solid rounded-2 fa-pen icon2 d-flex justify-content-center align-items-center me-2"
+                        ></i>
+                        <i
+                          class="fa-solid rounded-2 fa-trash icon2 d-flex justify-content-center align-items-center me-2"
+                        ></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div
+                    class="contact-card bg-white rounded-4 d-flex justify-content-start align-items-start flex-column"
+                  >
+                    <div class="mb-3 d-flex">
+                      <span
+                        class="icon d-flex justify-content-center align-items-center text-white me-3 fw-bold"
+                        >A</span
+                      >
+                      <div class="d-flex flex-column justify-content-center">
+                        <h2 class="contact-name fw-semibold">ali</h2>
+                        <p
+                          class="contact-number mb-0 fw-normal d-flex align-items-center"
+                        >
+                          <i
+                            class="fa-solid rounded-2 fa-phone icon2 d-flex justify-content-center align-items-center me-2"
+                          ></i>
+                          01283217414
+                        </p>
+                      </div>
+                    </div>
+                    <div class="mb-3 d-flex align-items-center">
+                      <i
+                        class="fa-solid rounded-2 fa-envelope icon2 d-flex justify-content-center align-items-center me-2"
+                      ></i>
+                      <span class="icon2-des fw-normal">
+                        dkakdkadkadk@leeo.com
+                      </span>
+                    </div>
+                    <div class="mb-3 d-flex align-items-center">
+                      <i
+                        class="fa-solid rounded-2 fa-location-dot icon2 d-flex justify-content-center align-items-center me-2"
+                      ></i>
+                      <span class="icon2-des fw-normal"> dksdksdsd </span>
+                    </div>
+                    <div
+                      class="mb-3 d-flex align-items-center justify-content-start"
+                    >
+                      <span class="group-type rounded-3 p-2 me-2 fw-normal">
+                        School
+                      </span>
+                      <span class="rounded-3 d-flex p-2 emergency-entered">
+                        <i
+                          class="fa-solid fa-heart-pulse d-flex justify-content-center align-items-center me-2"
+                        ></i>
+                        <span class="emergency-choosed">Emergency</span>
+                      </span>
+                    </div>
+                    <div
+                      class="contact-card-footer py-2 d-flex justify-content-between w-100"
+                    >
+                      <div class="d-flex">
+                        <i
+                          class="fa-solid rounded-2 fa-phone icon2 d-flex justify-content-center align-items-center me-2"
+                        ></i>
+                        <i
+                          class="fa-solid rounded-2 fa-envelope icon2 d-flex justify-content-center align-items-center me-2"
+                        ></i>
+                      </div>
+                      <div class="d-flex">
+                        <i
+                          class="fa-solid rounded-2 fa-star icon2 d-flex justify-content-center align-items-center me-2"
+                        ></i>
+                        <i
+                          class="fa-solid rounded-2 fa-heart-pulse icon2 d-flex justify-content-center align-items-center me-2"
+                        ></i>
+                        <i
+                          class="fa-solid rounded-2 fa-pen icon2 d-flex justify-content-center align-items-center me-2"
+                        ></i>
+                        <i
+                          class="fa-solid rounded-2 fa-trash icon2 d-flex justify-content-center align-items-center me-2"
+                        ></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div
+                    class="contact-card bg-white rounded-4 d-flex justify-content-start align-items-start flex-column"
+                  >
+                    <div class="mb-3 d-flex">
+                      <span
+                        class="icon d-flex justify-content-center align-items-center text-white me-3 fw-bold"
+                        >A</span
+                      >
+                      <div class="d-flex flex-column justify-content-center">
+                        <h2 class="contact-name fw-semibold">ali</h2>
+                        <p
+                          class="contact-number mb-0 fw-normal d-flex align-items-center"
+                        >
+                          <i
+                            class="fa-solid rounded-2 fa-phone icon2 d-flex justify-content-center align-items-center me-2"
+                          ></i>
+                          01283217414
+                        </p>
+                      </div>
+                    </div>
+                    <div class="mb-3 d-flex align-items-center">
+                      <i
+                        class="fa-solid rounded-2 fa-envelope icon2 d-flex justify-content-center align-items-center me-2"
+                      ></i>
+                      <span class="icon2-des fw-normal">
+                        dkakdkadkadk@leeo.com
+                      </span>
+                    </div>
+                    <div class="mb-3 d-flex align-items-center">
+                      <i
+                        class="fa-solid rounded-2 fa-location-dot icon2 d-flex justify-content-center align-items-center me-2"
+                      ></i>
+                      <span class="icon2-des fw-normal"> dksdksdsd </span>
+                    </div>
+                    <div
+                      class="mb-3 d-flex align-items-center justify-content-start"
+                    >
+                      <span class="group-type rounded-3 p-2 me-2 fw-normal">
+                        School
+                      </span>
+                      <span class="rounded-3 d-flex p-2 emergency-entered">
+                        <i
+                          class="fa-solid fa-heart-pulse d-flex justify-content-center align-items-center me-2"
+                        ></i>
+                        <span class="emergency-choosed">Emergency</span>
+                      </span>
+                    </div>
+                    <div
+                      class="contact-card-footer py-2 d-flex justify-content-between w-100"
+                    >
+                      <div class="d-flex">
+                        <i
+                          class="fa-solid rounded-2 fa-phone icon2 d-flex justify-content-center align-items-center me-2"
+                        ></i>
+                        <i
+                          class="fa-solid rounded-2 fa-envelope icon2 d-flex justify-content-center align-items-center me-2"
+                        ></i>
+                      </div>
+                      <div class="d-flex">
+                        <i
+                          class="fa-solid rounded-2 fa-star icon2 d-flex justify-content-center align-items-center me-2"
+                        ></i>
+                        <i
+                          class="fa-solid rounded-2 fa-heart-pulse icon2 d-flex justify-content-center align-items-center me-2"
+                        ></i>
+                        <i
+                          class="fa-solid rounded-2 fa-pen icon2 d-flex justify-content-center align-items-center me-2"
+                        ></i>
+                        <i
+                          class="fa-solid rounded-2 fa-trash icon2 d-flex justify-content-center align-items-center me-2"
+                        ></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
           <div class="col-xl-3">
             <div class="mb-4 rounded-4 favorites-section">
@@ -298,8 +616,98 @@
                   </p>
                 </div>
               </div>
+              <div id="has-favorites" class="has-favorites px-3 py-2 bg-white">
+                <div class="row gx-2 gy-2">
+                  <div class="col-sm-6 col-xl-12">
+                    <div
+                      class="favorite-item rounded-3 px-1 py-2 d-flex justify-content-start align-items-center"
+                    >
+                      <span
+                        class="icon d-flex justify-content-center align-items-center text-white me-2 fw-bold"
+                        >A</span
+                      >
+                      <div>
+                        <h4 class="fw-semibold name mb-0">ali</h4>
+                        <p class="fw-normal des mb-0">01284848484</p>
+                      </div>
+                      <i
+                        class="fa-solid rounded-3 fa-phone ms-auto d-flex justify-content-center align-items-center"
+                      ></i>
+                    </div>
+                  </div>
+                  <div class="col-sm-6 col-xl-12">
+                    <div
+                      class="favorite-item rounded-3 px-1 py-2 d-flex justify-content-start align-items-center"
+                    >
+                      <span
+                        class="icon d-flex justify-content-center align-items-center text-white me-2 fw-bold"
+                        >A</span
+                      >
+                      <div>
+                        <h4 class="fw-semibold name mb-0">ali</h4>
+                        <p class="fw-normal des mb-0">01284848484</p>
+                      </div>
+                      <i
+                        class="fa-solid rounded-3 fa-phone ms-auto d-flex justify-content-center align-items-center"
+                      ></i>
+                    </div>
+                  </div>
+                  <div class="col-sm-6 col-xl-12">
+                    <div
+                      class="favorite-item rounded-3 px-1 py-2 d-flex justify-content-start align-items-center"
+                    >
+                      <span
+                        class="icon d-flex justify-content-center align-items-center text-white me-2 fw-bold"
+                        >A</span
+                      >
+                      <div>
+                        <h4 class="fw-semibold name mb-0">ali</h4>
+                        <p class="fw-normal des mb-0">01284848484</p>
+                      </div>
+                      <i
+                        class="fa-solid rounded-3 fa-phone ms-auto d-flex justify-content-center align-items-center"
+                      ></i>
+                    </div>
+                  </div>
+                  <div class="col-sm-6 col-xl-12">
+                    <div
+                      class="favorite-item rounded-3 px-1 py-2 d-flex justify-content-start align-items-center"
+                    >
+                      <span
+                        class="icon d-flex justify-content-center align-items-center text-white me-2 fw-bold"
+                        >A</span
+                      >
+                      <div>
+                        <h4 class="fw-semibold name mb-0">ali</h4>
+                        <p class="fw-normal des mb-0">01284848484</p>
+                      </div>
+                      <i
+                        class="fa-solid rounded-3 fa-phone ms-auto d-flex justify-content-center align-items-center"
+                      ></i>
+                    </div>
+                  </div>
+                  <div class="col-sm-6 col-xl-12">
+                    <div
+                      class="favorite-item rounded-3 px-1 py-2 d-flex justify-content-start align-items-center"
+                    >
+                      <span
+                        class="icon d-flex justify-content-center align-items-center text-white me-2 fw-bold"
+                        >A</span
+                      >
+                      <div>
+                        <h4 class="fw-semibold name mb-0">ali</h4>
+                        <p class="fw-normal des mb-0">01284848484</p>
+                      </div>
+                      <i
+                        class="fa-solid rounded-3 fa-phone ms-auto d-flex justify-content-center align-items-center"
+                      ></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
               <div
-                class="bg-white d-flex align-items-center justify-content-center fw-normal no-favorites"
+                id="no-favorites"
+                class="bg-white d-none align-items-center justify-content-center fw-normal no-favorites"
               >
                 No favorites yet
               </div>
@@ -318,8 +726,115 @@
                   </p>
                 </div>
               </div>
+              <div id="has-emergency" class="has-emergency px-3 py-2 bg-white">
+                <div class="row gx-2 gy-2">
+                  <div class="col-sm-6 col-xl-12">
+                    <div
+                      class="emergency-item rounded-3 px-1 py-2 d-flex justify-content-start align-items-center"
+                    >
+                      <span
+                        class="icon d-flex justify-content-center align-items-center text-white me-2 fw-bold"
+                        >A</span
+                      >
+                      <div>
+                        <h4 class="fw-semibold name mb-0">ali</h4>
+                        <p class="fw-normal des mb-0">01284848484</p>
+                      </div>
+                      <i
+                        class="fa-solid rounded-3 fa-phone ms-auto d-flex justify-content-center align-items-center"
+                      ></i>
+                    </div>
+                  </div>
+                  <div class="col-sm-6 col-xl-12">
+                    <div
+                      class="emergency-item rounded-3 px-1 py-2 d-flex justify-content-start align-items-center"
+                    >
+                      <span
+                        class="icon d-flex justify-content-center align-items-center text-white me-2 fw-bold"
+                        >A</span
+                      >
+                      <div>
+                        <h4 class="fw-semibold name mb-0">ali</h4>
+                        <p class="fw-normal des mb-0">01284848484</p>
+                      </div>
+                      <i
+                        class="fa-solid rounded-3 fa-phone ms-auto d-flex justify-content-center align-items-center"
+                      ></i>
+                    </div>
+                  </div>
+                  <div class="col-sm-6 col-xl-12">
+                    <div
+                      class="emergency-item rounded-3 px-1 py-2 d-flex justify-content-start align-items-center"
+                    >
+                      <span
+                        class="icon d-flex justify-content-center align-items-center text-white me-2 fw-bold"
+                        >A</span
+                      >
+                      <div>
+                        <h4 class="fw-semibold name mb-0">ali</h4>
+                        <p class="fw-normal des mb-0">01284848484</p>
+                      </div>
+                      <i
+                        class="fa-solid rounded-3 fa-phone ms-auto d-flex justify-content-center align-items-center"
+                      ></i>
+                    </div>
+                  </div>
+                  <div class="col-sm-6 col-xl-12">
+                    <div
+                      class="emergency-item rounded-3 px-1 py-2 d-flex justify-content-start align-items-center"
+                    >
+                      <span
+                        class="icon d-flex justify-content-center align-items-center text-white me-2 fw-bold"
+                        >A</span
+                      >
+                      <div>
+                        <h4 class="fw-semibold name mb-0">ali</h4>
+                        <p class="fw-normal des mb-0">01284848484</p>
+                      </div>
+                      <i
+                        class="fa-solid rounded-3 fa-phone ms-auto d-flex justify-content-center align-items-center"
+                      ></i>
+                    </div>
+                  </div>
+                  <div class="col-sm-6 col-xl-12">
+                    <div
+                      class="emergency-item rounded-3 px-1 py-2 d-flex justify-content-start align-items-center"
+                    >
+                      <span
+                        class="icon d-flex justify-content-center align-items-center text-white me-2 fw-bold"
+                        >A</span
+                      >
+                      <div>
+                        <h4 class="fw-semibold name mb-0">ali</h4>
+                        <p class="fw-normal des mb-0">01284848484</p>
+                      </div>
+                      <i
+                        class="fa-solid rounded-3 fa-phone ms-auto d-flex justify-content-center align-items-center"
+                      ></i>
+                    </div>
+                  </div>
+                  <div class="col-sm-6 col-xl-12">
+                    <div
+                      class="emergency-item rounded-3 px-1 py-2 d-flex justify-content-start align-items-center"
+                    >
+                      <span
+                        class="icon d-flex justify-content-center align-items-center text-white me-2 fw-bold"
+                        >A</span
+                      >
+                      <div>
+                        <h4 class="fw-semibold name mb-0">ali</h4>
+                        <p class="fw-normal des mb-0">01284848484</p>
+                      </div>
+                      <i
+                        class="fa-solid rounded-3 fa-phone ms-auto d-flex justify-content-center align-items-center"
+                      ></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
               <div
-                class="bg-white d-flex align-items-center justify-content-center fw-normal no-emergency"
+                id="no-emergency"
+                class="bg-white d-none align-items-center justify-content-center fw-normal no-emergency"
               >
                 No emergency contacts
               </div>

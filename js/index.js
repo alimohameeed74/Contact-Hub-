@@ -1,38 +1,38 @@
 // Define Main Variables
-// var userPhotoURL= document.
-var userfullName=document.getElementById('fullName');
-var userphoneNumber=document.getElementById('phoneNumber');
-var useremailAddress=document.getElementById('emailAddress');
-var userAddress=document.getElementById('Address');
-var usergroup=document.getElementById('group');
-var usernotes=document.getElementById('notes');
-var userFav=document.getElementById('favorite-checkbox');
-var userEme=document.getElementById('emergency-checkbox');
+// var contactPhotoURL= document.
+var contactfullName=document.getElementById('fullName');
+var contactphoneNumber=document.getElementById('phoneNumber');
+var contactemailAddress=document.getElementById('emailAddress');
+var contactAddress=document.getElementById('Address');
+var contactgroup=document.getElementById('group');
+var contactnotes=document.getElementById('notes');
+var contactFav=document.getElementById('favorite-checkbox');
+var contactEme=document.getElementById('emergency-checkbox');
 
-var users=[];
+var contacts=[];
 
 
 
 
 // Define Main Functions
 function addContact(){
-     var newUser={
+     var newContact={
         // photoURL:'',
-        fullName: userfullName.value,
-        phoneNumber: userphoneNumber.value, 
-        emailAddress: useremailAddress.value, 
-        Address: userAddress.value, 
-        group: usergroup.value,
-        notes: usernotes.value,
-        ifFav:  userFav.value,
-        ifEme:  userEme.value,
+        fullName: contactfullName.value,
+        phoneNumber: contactphoneNumber.value, 
+        emailAddress: contactemailAddress.value, 
+        Address: contactAddress.value, 
+        group: contactgroup.value,
+        notes: contactnotes.value,
+        ifFav:  contactFav.value,
+        ifEme:  contactEme.value,
     }
-    users.push(newUser);
-    window.alert(`the user ${newUser.fullName} added sucessfully`);
-    localStorage.setItem('users', JSON.stringify(users));
+    contacts.push(newContact);
+    window.alert(`the contact ${newContact.fullName} added sucessfully`);
+    localStorage.setItem('contacts', JSON.stringify(contacts));
     // diplayProducts(productArr);
     clearForm();
-    console.log(users)
+    console.log(contacts)
 
 
 
@@ -60,24 +60,24 @@ function addContact(){
 }
 
 function clearForm(){
-    userfullName.value='';
-    userphoneNumber.value=''; 
-    useremailAddress.value=''; 
-    userAddress.value=''; 
-    usergroup.value='Select a group';
-    usernotes.value='';
-    userFav.value='';
-    userEme.value='';
+    contactfullName.value='';
+    contactphoneNumber.value=''; 
+    contactemailAddress.value=''; 
+    contactAddress.value=''; 
+    contactgroup.value='Select a group';
+    contactnotes.value='';
+    contactFav.value='';
+    contactEme.value='';
 }
 
 
 function init(){
 
-if (localStorage.getItem('users')){
-    users=JSON.parse(localStorage.getItem('users'));
+if (localStorage.getItem('contacts')){
+    contacts=JSON.parse(localStorage.getItem('contacts'));
 }
 
-console.log(users);
+console.log(contacts);
 }
 
 
