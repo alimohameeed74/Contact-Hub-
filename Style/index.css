@@ -124,6 +124,7 @@ h1{
 /* Main Card */
 
 .main-card{
+    /* padding-top: 96px; */
     background: linear-gradient(to right, #F8FAFC, #EEF5FD);
 }
 
@@ -267,7 +268,7 @@ h1{
 .no-favorites,
 .no-emergency{
     font-size: var(--fz-14);
-    height: 150px;
+    height: 200px;
     color:oklch(0.707 0.022 261.325);
     border-bottom-right-radius: var(--one-rem);
     border-bottom-left-radius: var(--one-rem);
@@ -278,7 +279,7 @@ h1{
 
 .has-favorites,
 .has-emergency{
-    height: 150px;
+    height: 200px;
     border-bottom-right-radius: var(--one-rem);
     border-bottom-left-radius: var(--one-rem);
 }
@@ -387,10 +388,30 @@ h1{
     padding-block: var(--v-30px);
     font-size: var(--fz-14);
 }
-
-
+.contact-card .icon .fa-heart-pulse {
+    position: absolute;
+    top: 78%;
+    bottom: 0;
+    right: -1px;
+    border-radius: 50%;
+    font-size: 8px;
+    padding: 10px;
+    background-color: #FF2056;
+    border: 2px white solid;
+}
+.contact-card .icon .fa-star {
+    position: absolute;
+    top: -10px;
+    right: -1px;
+    border-radius: 50%;
+    font-size: 8px;
+    padding: 10px;
+    background-color: #FFB900;
+    height: 12px;
+    border: 2px white solid;
+}
 .contacts-container{
-    height: 500px;
+    height: 412px;
 }
 
 .contacts-container::-webkit-scrollbar {
@@ -401,10 +422,8 @@ h1{
     -ms-overflow-style: none;  
     scrollbar-width: none;    
     overflow-y: scroll;
+    overflow-x: hidden;
 }
-
-
-
 
 
 
@@ -450,10 +469,35 @@ h1{
 
 
 .group-type{
-    background-color: #FEF3C6;
-    color: oklch(0.555 0.163 48.998);
     font-size: var(--fz-11);
-    font-weight: var(--fw-500)
+    font-weight: var(--fw-500);
+}
+
+.School{
+   background-color: #FEF3C6;
+    color: oklch(0.555 0.163 48.998);
+}
+
+.Family{
+   color: oklch(0.488 0.243 264.376);
+   background-color: #DBEAFE;
+}
+
+.Friends{
+   background-color: #DBFCE7;
+    color: oklch(0.527 0.154 150.069);
+}
+
+.Work{
+   background-color: #F3E8FF;
+    color: oklch(0.496 0.265 301.924)
+;
+}
+
+.Others{
+   background-color: #F3F4F6;
+    color: oklch(0.373 0.034 259.733)
+;
 }
 
 .contact-card .emergency-entered .fa-heart-pulse{
