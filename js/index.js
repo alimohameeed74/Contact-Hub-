@@ -1,26 +1,37 @@
 // Define Main Variables
 // var contactPhotoURL= document.
 var contactfullName=document.getElementById('fullName');
+var editedcontactfullName=document.getElementById('editedfullName');
 var contactphoneNumber=document.getElementById('phoneNumber');
+var editedcontactphoneNumber=document.getElementById('editedphoneNumber');
 var contactemailAddress=document.getElementById('emailAddress');
+var editedcontactemailAddress=document.getElementById('editedemailAddress');
 var contactAddress=document.getElementById('Address');
+var editedcontactAddress=document.getElementById('editedAddress');
 var contactgroup=document.getElementById('group');
+var editedcontactgroup=document.getElementById('editedgroup');
 var contactnotes=document.getElementById('notes');
+var editedcontactnotes=document.getElementById('editednotes');
 var noContacts=document.getElementById('no-contacts');
 var savedCards= document.getElementById('saved-cards');
 var hasFavorites=document.getElementById('has-favorites');
 var noFavorites=document.getElementById('no-favorites');
 var favoriteCheckBox= document.getElementById('favorite-checkbox');
+var editedfavoriteCheckBox= document.getElementById('editedfavorite-checkbox');
 var hasEmergency=document.getElementById('has-emergency');
 var noEmergency=document.getElementById('no-emergency');
 var emergencyCheckBox= document.getElementById('emergency-checkbox');
+var editedemergencyCheckBox= document.getElementById('editedemergency-checkbox');
 var emeContacts=document.getElementById('eme-contacts');
 var favContacts=document.getElementById('fav-contacts');
 var totalContacts=document.getElementById('total-contacts');
 var nOfContacts=document.getElementById('numOfContacts');
+var confirmButton= document.getElementById('confirmButton');
 var totalContactsBlackBox='';
 var favContactsBlackBox='';
 var emeContactsBlackBox='';
+var isAddPressed=true;
+var exampleModalLabel=document.getElementById('exampleModalLabel');
 var contacts=[];
 var favcontacts=[];
 var emecontacts=[];
@@ -35,17 +46,17 @@ var infoNumbers={
 
 // Define Main Functions
 function addContact(){
-     var newContact={
-        // photoURL:'',
-        fullName: contactfullName.value,
-        phoneNumber: contactphoneNumber.value, 
-        emailAddress: contactemailAddress.value, 
-        Address: contactAddress.value, 
-        group: contactgroup.value,
-        notes: contactnotes.value,
-        isFav:  favoriteCheckBox.checked,
-        isEme:  emergencyCheckBox.checked,
-    }
+  var newContact={
+    // photoURL:'',
+    fullName: contactfullName.value,
+    phoneNumber: contactphoneNumber.value, 
+    emailAddress: contactemailAddress.value, 
+    Address: contactAddress.value, 
+    group: contactgroup.value,
+    notes: contactnotes.value,
+    isFav:  favoriteCheckBox.checked,
+    isEme:  emergencyCheckBox.checked,
+  }
     contacts.push(newContact);
     favcontacts.push(newContact);
     emecontacts.push(newContact);
@@ -83,6 +94,31 @@ function addContact(){
 
 }
 
+function confirmDelete(cID){
+  var deletedName= contacts[cID].fullName.slice(0,contacts[cID].fullName.indexOf(' '));
+  Swal.fire({
+  title: "Delete Contact?",
+  text: `Are you sure you want to delete ${deletedName}? This action cannot be undone.`,
+  icon: "warning",
+  showCancelButton: true,
+  confirmButtonColor: "#198754",
+  cancelButtonColor: "#d33",
+  confirmButtonText: "Yes, delete it!"
+}).then((result) => {
+  if (result.isConfirmed) {
+    Swal.fire({
+      title: "Deleted!",
+      text: "Contact has been deleted.",
+      icon: "success",
+      showConfirmButton: false,
+      timer: 2000,
+    });
+    removeContact(cID);
+  }
+});
+}
+
+
 
 function removeContact(cID){
   contacts.splice(cID,1);
@@ -92,8 +128,74 @@ function removeContact(cID){
   diplayFavContacts(contacts);
   diplayEmeContacts(contacts);
   editInfo(infoNumbers,contacts);
-  
 }
+
+
+
+
+function editContact(cID){
+    editedcontactfullName.value=contacts[cID].fullName;
+    editedcontactphoneNumber.value=contacts[cID].phoneNumber;
+    editedcontactemailAddress.value=contacts[cID].emailAddress;
+    editedcontactAddress.value=contacts[cID].Address;
+    editedcontactgroup.value=contacts[cID].group;
+    editedcontactnotes.value=contacts[cID].notes;
+    editedfavoriteCheckBox.checked=contacts[cID].isFav;
+    editedemergencyCheckBox.checked=contacts[cID].isEme;
+    confirmButton.editedId=cID;
+}
+
+function confirmUpdate(){
+  contacts[+confirmButton.editedId].fullName=editedcontactfullName.value;
+  contacts[+confirmButton.editedId].phoneNumber=editedcontactphoneNumber.value;
+  contacts[+confirmButton.editedId].emailAddress=editedcontactemailAddress.value;
+  contacts[+confirmButton.editedId].Address=editedcontactAddress.value;
+  contacts[+confirmButton.editedId].group=editedcontactgroup.value;
+  contacts[+confirmButton.editedId].notes=editedcontactnotes.value;
+  contacts[+confirmButton.editedId].isFav=editedfavoriteCheckBox.checked;
+  contacts[+confirmButton.editedId].isEme=editedemergencyCheckBox.checked;
+  localStorage.setItem('contacts',JSON.stringify(contacts));
+  Swal.fire({
+      title: "Updated!",
+      text: "Contact has been updated successfully.",
+      icon: "success",
+      showConfirmButton: false,
+      timer: 2000,
+    });
+  diplayContacts(contacts);
+  diplayFavContacts(contacts);
+  diplayEmeContacts(contacts);
+  editInfo(infoNumbers,contacts);;
+}
+
+
+
+
+
+
+
+
+
+
+//     localStorage.setItem('allProducts',JSON.stringify(productArr));
+//     productArr=JSON.parse(localStorage.getItem('allProducts'));
+//       diplayProducts(productArr);
+//       clearForm();
+      
+
+//   }
+//   else{
+//     editBtn.setAttribute('disabled', true);
+
+//   }
+
+
+// }
+
+
+
+
+
 
 
 function diplayContacts(myList){
@@ -178,10 +280,9 @@ function diplayContacts(myList){
                         <i
                           class="fa-solid rounded-2 fa-heart-pulse icon2 d-flex justify-content-center align-items-center me-2"
                         ></i>
-                        <i
-                          class="fa-solid rounded-2 fa-pen icon2 d-flex justify-content-center align-items-center me-2"
-                        ></i>
-                        <button onclick='removeContact(${i});' style='background-color:transparent' class="d-flex justify-content-center align-items-center p-0 border-0 rounded-2">
+                        <button  data-bs-toggle="modal" data-bs-target="#exampleModal1" onclick='editContact(${i});' style='background-color:transparent' class="d-flex justify-content-center align-items-center p-0 border-0 rounded-2">
+                        <i class="fa-solid rounded-2 fa-pen icon2 d-flex justify-content-center align-items-center"></i></button>
+                        <button onclick='confirmDelete(${i});' style='background-color:transparent' class="d-flex justify-content-center align-items-center p-0 border-0 rounded-2">
                         <i class="fa-solid rounded-2 fa-trash icon2 d-flex justify-content-center align-items-center"></i></button>
                       </div>
                     </div>
@@ -286,6 +387,15 @@ function clearForm(){
     contactnotes.value='';
     favoriteCheckBox.checked=false;
     emergencyCheckBox.checked=false;
+    // --------------------------------
+    editedcontactfullName.value='';
+    editedcontactphoneNumber.value=''; 
+    editedcontactemailAddress.value=''; 
+    editedcontactAddress.value=''; 
+    editedcontactgroup.value='Friends';
+    editedcontactnotes.value='';
+    editedfavoriteCheckBox.checked=false;
+    editedemergencyCheckBox.checked=false;
 }
 
 
