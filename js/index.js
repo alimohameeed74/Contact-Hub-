@@ -60,8 +60,14 @@ function addContact(){
     contacts.push(newContact);
     favcontacts.push(newContact);
     emecontacts.push(newContact);
-    window.alert(`the contact ${newContact.fullName} added sucessfully`);
     localStorage.setItem('contacts', JSON.stringify(contacts));
+    Swal.fire({
+      title: "Added!",
+      text: "Contact has been added successfully.",
+      icon: "success",
+      showConfirmButton: false,
+      timer: 2000,
+    });
     diplayContacts(contacts);
     diplayFavContacts(contacts);
     diplayEmeContacts(contacts);
