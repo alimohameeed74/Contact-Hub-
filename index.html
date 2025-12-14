@@ -518,6 +518,12 @@
             <p class="fw-normal title-des">
               Manage and organize your
               <span id="numOfContacts">0</span> contacts
+              <span id="searchWarning" class="text-danger">
+                (Just search only – no delete or update)
+              </span>
+              <span id="searchNotWarning" class="text-success">
+                (You can delete or update)
+              </span>
             </p>
             <div class="contact-search rounded-3 bg-white p-3">
               <i class="fa-solid fa-magnifying-glass"></i>
@@ -526,6 +532,8 @@
                 type="search"
                 placeholder="Search by name, phone, or email..."
                 aria-label="Search"
+                id="searchInput"
+                oninput="searchByName(this)"
               />
             </div>
             <div class="contacts-container my-4 py-2">

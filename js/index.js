@@ -29,10 +29,14 @@ let totalContacts=document.getElementById('total-contacts');
 let nOfContacts=document.getElementById('numOfContacts');
 let confirmButton= document.getElementById('confirmButton');
 let saveButton= document.getElementById('saveButton');
+let searchInput= document.getElementById('searchInput');
+let exampleModalLabel=document.getElementById('exampleModalLabel');
+let searchWarning=document.getElementById('searchWarning');
+let searchNotWarning=document.getElementById('searchNotWarning');
 let totalContactsBlackBox='';
+let totalSearchedContactsBlackBox='';
 let favContactsBlackBox='';
 let emeContactsBlackBox='';
-let exampleModalLabel=document.getElementById('exampleModalLabel');
 let contacts=[];
 let favcontacts=[];
 let emecontacts=[];
@@ -46,6 +50,8 @@ let infoNumbers={
 
 
 // Define Main Functions
+
+// 1) Validate Input
 function validatedInput(input,number){
   let isValid;
   let validationObject;
@@ -82,7 +88,7 @@ function validatedInput(input,number){
 }
 
 
-
+// 2) Add New Contact
 function addContact(){
    if(validatedInput(contactfullName,1)
       &&
@@ -91,33 +97,45 @@ function addContact(){
       validatedInput(contactemailAddress,1)
       &&
       validatedInput(contactphoneNumber,1)){
-    let newContact={
-    // photoURL:'',
-    fullName: contactfullName.value,
-    phoneNumber: contactphoneNumber.value, 
-    emailAddress: contactemailAddress.value, 
-    Address: contactAddress.value, 
-    group: contactgroup.value,
-    notes: contactnotes.value,
-    isFav:  favoriteCheckBox.checked,
-    isEme:  emergencyCheckBox.checked,
-  }
-    contacts.push(newContact);
-    favcontacts.push(newContact);
-    emecontacts.push(newContact);
-    localStorage.setItem('contacts', JSON.stringify(contacts));
-    Swal.fire({
-      title: "Added!",
-      text: "Contact has been added successfully.",
-      icon: "success",
-      showConfirmButton: false,
-      timer: 2000,
+        if (checkIfDuplicated(contactphoneNumber.value)){
+          Swal.fire({
+            title: "Duplicate Phone Number!",
+            text: `A contact with this phone number already exists: ${findFullName(contactphoneNumber.value)}.`,
+            icon: "error",
+            confirmButtonColor: "#d33",
+            showConfirmButton: true,
     });
-    diplayContacts(contacts);
-    diplayFavContacts(contacts);
-    diplayEmeContacts(contacts);
-    editInfo(infoNumbers,contacts);
-    // console.log(contacts)
+        }
+        else{
+            let newContact={
+            // photoURL:'',
+            fullName: contactfullName.value,
+            phoneNumber: contactphoneNumber.value, 
+            emailAddress: contactemailAddress.value, 
+            Address: contactAddress.value, 
+            group: contactgroup.value,
+            notes: contactnotes.value,
+            isFav:  favoriteCheckBox.checked,
+            isEme:  emergencyCheckBox.checked,
+          }
+            contacts.push(newContact);
+            favcontacts.push(newContact);
+            emecontacts.push(newContact);
+            localStorage.setItem('contacts', JSON.stringify(contacts));
+            Swal.fire({
+              title: "Added!",
+              text: "Contact has been added successfully.",
+              icon: "success",
+              showConfirmButton: false,
+              timer: 2000,
+            });
+            diplayContacts(contacts);
+            diplayFavContacts(contacts);
+            diplayEmeContacts(contacts);
+            editInfo(infoNumbers,contacts);
+            // console.log(contacts)
+
+        }
 
 
       }
@@ -135,13 +153,40 @@ function addContact(){
 
 
 }
+function addToEme(cID){
+    contacts[cID].isEme=!contacts[cID].isEme;
+    localStorage.setItem('contacts', JSON.stringify(contacts));
+    diplayContacts(contacts);
+    diplayEmeContacts(contacts);
+    editInfo(infoNumbers,contacts);
+ 
+
+}
+function addToFav(cID){
+    contacts[cID].isFav=!contacts[cID].isFav;
+    localStorage.setItem('contacts', JSON.stringify(contacts));
+    diplayContacts(contacts);
+    diplayFavContacts(contacts);
+    editInfo(infoNumbers,contacts);
+ 
+
+}
 
 
+// 3) Delete Contact
+function removeContact(cID){
+  contacts.splice(cID,1);
+  localStorage.setItem('contacts',JSON.stringify(contacts));
+  // console.log(contacts);
+  diplayContacts(contacts);
+  diplayFavContacts(contacts);
+  diplayEmeContacts(contacts);
+  editInfo(infoNumbers,contacts);
+}
 function confirmDelete(cID){
-  let deletedName= contacts[cID].fullName.slice(0,contacts[cID].fullName.indexOf(' '));
   Swal.fire({
   title: "Delete Contact?",
-  text: `Are you sure you want to delete ${deletedName}? This action cannot be undone.`,
+  text: `Are you sure you want to delete ${contacts[cID].fullName}? This action cannot be undone.`,
   icon: "warning",
   showCancelButton: true,
   confirmButtonColor: "#198754",
@@ -162,39 +207,9 @@ function confirmDelete(cID){
 }
 
 
-function removeContact(cID){
-  contacts.splice(cID,1);
-  localStorage.setItem('contacts',JSON.stringify(contacts));
-  // console.log(contacts);
-  diplayContacts(contacts);
-  diplayFavContacts(contacts);
-  diplayEmeContacts(contacts);
-  editInfo(infoNumbers,contacts);
-}
-
-
-function addToEme(cID){
-    contacts[cID].isEme=!contacts[cID].isEme;
-    localStorage.setItem('contacts', JSON.stringify(contacts));
-    diplayContacts(contacts);
-    diplayEmeContacts(contacts);
-    editInfo(infoNumbers,contacts);
- 
-
-}
-
-
-function addToFav(cID){
-    contacts[cID].isFav=!contacts[cID].isFav;
-    localStorage.setItem('contacts', JSON.stringify(contacts));
-    diplayContacts(contacts);
-    diplayFavContacts(contacts);
-    editInfo(infoNumbers,contacts);
- 
-
-}
-
+// 4) Edit Contact
 function editContact(cID){
+  // console.log(cID)
     editedcontactfullName.value=contacts[cID].fullName;
     editedcontactphoneNumber.value=contacts[cID].phoneNumber;
     editedcontactemailAddress.value=contacts[cID].emailAddress;
@@ -205,7 +220,6 @@ function editContact(cID){
     editedemergencyCheckBox.checked=contacts[cID].isEme;
     confirmButton.editedId=cID;
 }
-
 function confirmUpdate(){
   if(validatedInput(editedcontactfullName,2)
       &&
@@ -214,28 +228,27 @@ function confirmUpdate(){
       validatedInput(editedcontactemailAddress,2)
       &&
       validatedInput(editedcontactAddress,2)){
-
-        contacts[+confirmButton.editedId].fullName=editedcontactfullName.value;
-        contacts[+confirmButton.editedId].phoneNumber=editedcontactphoneNumber.value;
-        contacts[+confirmButton.editedId].emailAddress=editedcontactemailAddress.value;
-        contacts[+confirmButton.editedId].Address=editedcontactAddress.value;
-        contacts[+confirmButton.editedId].group=editedcontactgroup.value;
-        contacts[+confirmButton.editedId].notes=editedcontactnotes.value;
-        contacts[+confirmButton.editedId].isFav=editedfavoriteCheckBox.checked;
-        contacts[+confirmButton.editedId].isEme=editedemergencyCheckBox.checked;
-        localStorage.setItem('contacts',JSON.stringify(contacts));
-        Swal.fire({
-      title: "Updated!",
-      text: "Contact has been updated successfully.",
-      icon: "success",
-      showConfirmButton: false,
-      timer: 2000,
-    });
-      diplayContacts(contacts);
-      diplayFavContacts(contacts);
-      diplayEmeContacts(contacts);
-      editInfo(infoNumbers,contacts);
-      }
+          contacts[+confirmButton.editedId].fullName=editedcontactfullName.value;
+          contacts[+confirmButton.editedId].phoneNumber=editedcontactphoneNumber.value;
+          contacts[+confirmButton.editedId].emailAddress=editedcontactemailAddress.value;
+          contacts[+confirmButton.editedId].Address=editedcontactAddress.value;
+          contacts[+confirmButton.editedId].group=editedcontactgroup.value;
+          contacts[+confirmButton.editedId].notes=editedcontactnotes.value;
+          contacts[+confirmButton.editedId].isFav=editedfavoriteCheckBox.checked;
+          contacts[+confirmButton.editedId].isEme=editedemergencyCheckBox.checked;
+          localStorage.setItem('contacts',JSON.stringify(contacts));
+          Swal.fire({
+        title: "Updated!",
+        text: "Contact has been updated successfully.",
+        icon: "success",
+        showConfirmButton: false,
+        timer: 2000,
+      });
+        diplayContacts(contacts);
+        diplayFavContacts(contacts);
+        diplayEmeContacts(contacts);
+        editInfo(infoNumbers,contacts);
+        }
       else{
         Swal.fire({
       title: "Invalid Operation!",
@@ -250,8 +263,43 @@ function confirmUpdate(){
 
 
 }
+function editInfo(info,arr){
+  let fav=0,eme=0;
+  info.totalContacts=arr.length;
+  for (let i=0;i<arr.length;i++){
+    if(arr[i].isFav){
+      fav++;
+    }
+    if(arr[i].isEme){
+      eme++;
+    }
+  }
+  info.favContacts=fav;
+  info.emeContacts=eme;
+  putInfo(info);
+}
 
 
+// 5) Search about Any Contact
+function searchByName(input){
+  let matchedArr=[];
+  console.log(input.value);
+  if (input.value=='')
+    diplayContacts(contacts);
+  else{
+    for (let i=0;i<contacts.length;i++){
+      if(contacts[i].fullName.toLowerCase().includes(input.value.toLowerCase())
+      ||  contacts[i].phoneNumber.includes(input.value)
+      ||   contacts[i].emailAddress.toLowerCase().includes(input.value.toLowerCase())){
+        matchedArr.push(contacts[i])
+      }
+    }
+    diplaySearchedContacts(matchedArr);
+  }
+}
+
+
+// 6) Clear Forms
 function clearForm(){
     contactfullName.value='';
     contactfullName.classList.remove('is-valid');
@@ -297,23 +345,7 @@ function clearForm(){
 }
 
 
-function editInfo(info,arr){
-  let fav=0,eme=0;
-  info.totalContacts=arr.length;
-  for (let i=0;i<arr.length;i++){
-    if(arr[i].isFav){
-      fav++;
-    }
-    if(arr[i].isEme){
-      eme++;
-    }
-  }
-  info.favContacts=fav;
-  info.emeContacts=eme;
-  putInfo(info);
-}
-
-
+// 7) Put Data in Their Correct Places
 function putInfo(info){
     emeContacts.innerHTML=info.emeContacts;
     totalContacts.innerHTML=info.totalContacts;
@@ -321,6 +353,7 @@ function putInfo(info){
 }
 
 
+// 8) Initalization Function
 function init(){
     if (localStorage.getItem('contacts')){
         contacts=JSON.parse(localStorage.getItem('contacts'));
@@ -333,16 +366,33 @@ function init(){
     // console.log(contacts);
 }
 
+
+// 9) Check for Duplication
+function checkIfDuplicated(input){
+  for (let i=0;i<contacts.length;i++){
+    if(contacts[i].phoneNumber === input){
+        return true;
+      }
+  }
+  return false;
+}
+
+
+// 10) Display Contacts to User
 function diplayContacts(myList){
     totalContactsBlackBox='';
     // console.log(myList.length)
     if (myList.length===0){
         noContacts.classList.remove('d-none');
         savedCards.classList.add('d-none');
-    }
-    else{
+        searchWarning.classList.add('d-none');
+        searchNotWarning.classList.add('d-none')
+      }
+      else{
         noContacts.classList.add('d-none');
         savedCards.classList.remove('d-none');
+        searchNotWarning.classList.remove('d-none')
+        searchWarning.classList.add('d-none');
         for(let i=0;i<myList.length;i++){
             totalContactsBlackBox+=`
             <div class="col-sm-6">
@@ -428,9 +478,98 @@ function diplayContacts(myList){
         }
     }
     savedCards.innerHTML=totalContactsBlackBox;
-    nOfContacts.innerHTML=myList.length;
-}
+    nOfContacts.innerHTML=contacts.length;
 
+}
+function diplaySearchedContacts(myList){
+  totalSearchedContactsBlackBox='';
+    // console.log(myList.length)
+    if (myList.length===0){
+        noContacts.classList.remove('d-none');
+        savedCards.classList.add('d-none');
+        searchWarning.classList.add('d-none');
+        searchNotWarning.classList.add('d-none');
+      }
+      else{
+        noContacts.classList.add('d-none');
+        savedCards.classList.remove('d-none');
+        searchWarning.classList.remove('d-none');
+        searchNotWarning.classList.add('d-none');
+        for(let i=0;i<myList.length;i++){
+            totalSearchedContactsBlackBox+=`
+            <div class="col-sm-6">
+                  <div
+                    class="contact-card bg-white rounded-4 d-flex justify-content-start align-items-start flex-column"
+                  >
+                    <div class="mb-3 d-flex">
+                      <span
+                        class="icon position-relative d-flex justify-content-center align-items-center text-white me-3 fw-bold"
+                        >
+                        <i class='fa-solid text-white fa-star d-${(myList[i].isFav) ? 'flex':'none'} justify-content-center align-items-center'></i>
+                        A
+                        <i class='fa-solid text-white fa-heart-pulse d-${(myList[i].isEme) ? 'flex':'none'} justify-content-center align-items-center'></i>
+                      </span
+                      >
+                      <div class="d-flex flex-column justify-content-center">
+                        <h2 class="contact-name fw-semibold">${myList[i].fullName}</h2>
+                        <p
+                          class="contact-number mb-0 fw-normal d-flex align-items-center"
+                        >
+                          <i
+                            class="fa-solid rounded-2 fa-phone icon2 d-flex justify-content-center align-items-center me-2"
+                          ></i>
+                          ${myList[i].phoneNumber}
+                        </p>
+                      </div>
+                    </div>
+                    <div class="mb-3 d-flex align-items-center">
+                      <i
+                        class="fa-solid rounded-2 fa-envelope icon2 d-flex justify-content-center align-items-center me-2"
+                      ></i>
+                      <span class="icon2-des fw-normal">
+                        ${myList[i].emailAddress}
+                      </span>
+                    </div>
+                    <div class="mb-3 d-flex align-items-center">
+                      <i
+                        class="fa-solid rounded-2 fa-location-dot icon2 d-flex justify-content-center align-items-center me-2"
+                      ></i>
+                      <span class="icon2-des fw-normal"> ${myList[i].Address} </span>
+                    </div>
+                    <div
+                      class="mb-3 d-flex align-items-center justify-content-start"
+                    >
+                      <span class="group-type ${myList[i].group} rounded-3 p-2 me-2 fw-normal">
+                        ${myList[i].group}
+                      </span>
+                      <span class="rounded-3 d-${(myList[i].isEme) ? 'flex':'none'} p-2 emergency-entered">
+                        <i
+                          class="fa-solid fa-heart-pulse d-flex justify-content-center align-items-center me-2"
+                        ></i>
+                        <span class="emergency-choosed">Emergency</span>
+                      </span>
+                    </div>
+                    <div
+                      class="contact-card-footer py-2 d-flex justify-content-between w-100"
+                    >
+                      <div class="d-flex">
+                        <a href='tel:${myList[i].phoneNumber}'><i
+                          class="fa-solid rounded-2 fa-phone icon2 d-flex justify-content-center align-items-center me-2"
+                        ></i></a>
+                        <a href='mailto:${myList[i].emailAddress}'>
+                        <i
+                          class="fa-solid rounded-2 fa-envelope icon2 d-flex justify-content-center align-items-center me-2"
+                        ></i></a>
+                      </div>
+                    </div>
+                  </div>
+                </div>`;
+        }
+    }
+    savedCards.innerHTML=totalSearchedContactsBlackBox;
+    nOfContacts.innerHTML=myList.length;
+
+}
 function diplayFavContacts(myList){
   favContactsBlackBox='';
   // console.log(myList.length)
@@ -472,7 +611,6 @@ function diplayFavContacts(myList){
     }
     hasFavorites.innerHTML=favContactsBlackBox;
 }
-
 function diplayEmeContacts(myList){
     emeContactsBlackBox='';
     // console.log(myList.length)
@@ -515,6 +653,17 @@ function diplayEmeContacts(myList){
     }
     hasEmergency.innerHTML=emeContactsBlackBox;
 }
+
+// 11) Return fullName
+function findFullName(input){
+  for(let i=0;i<contacts.length;i++){
+    if(contacts[i].phoneNumber===input){
+      return contacts[i].fullName;
+    }
+  }
+}
+
+
 // Start Main Logic
 init();
 
