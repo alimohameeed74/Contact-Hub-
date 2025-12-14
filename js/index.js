@@ -463,7 +463,7 @@ function diplayFavContacts(myList){
                  <h4 class="fw-semibold name mb-0">${filteredArray[i].fullName}</h4>
                  <p class="fw-normal des mb-0">${filteredArray[i].phoneNumber}</p>
                  </div>
-                 <a class='ms-auto' href='tel:${myList[i].phoneNumber}'><i
+                 <a class='ms-auto' href='tel:${filteredArray[i].phoneNumber}'><i
                  class="fa-solid rounded-3 fa-phone ms-auto d-flex justify-content-center align-items-center"
                  ></i></a>
              </div>
@@ -505,7 +505,7 @@ function diplayEmeContacts(myList){
                         <h4 class="fw-semibold name mb-0">${filteredArray[i].fullName}</h4>
                         <p class="fw-normal des mb-0">${filteredArray[i].phoneNumber}</p>
                       </div>
-                      <a class='ms-auto' href='tel:${myList[i].phoneNumber}'>
+                      <a class='ms-auto' href='tel:${filteredArray[i].phoneNumber}'>
                       <i
                  class="fa-solid rounded-3 fa-phone ms-auto d-flex justify-content-center align-items-center"
                  ></i></a>
