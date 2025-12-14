@@ -55,6 +55,10 @@ body {
     padding-inline: 0;
 }
 
+a{
+    text-decoration: none;
+}
+
 /* End of Basic Configurations */
 
 

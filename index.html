@@ -70,6 +70,7 @@
                 class="btn-close"
                 data-bs-dismiss="modal"
                 aria-label="Close"
+                onclick="clearForm()"
               ></button>
             </div>
             <div class="modal-body">
@@ -85,7 +86,15 @@
                     placeholder="Enter Full Name"
                     aria-label="fullName"
                     id="fullName"
+                    oninput="validatedInput(this,1)"
                   />
+                  <span
+                    style="font-size: 12px; color: oklch(0.645 0.246 16.439)"
+                    class="text-danger d-none mt-1"
+                  >
+                    Name should contain only letters and spaces (2-50
+                    characters)
+                  </span>
                 </div>
               </div>
               <div class="mb-3">
@@ -100,7 +109,14 @@
                     placeholder="e.g., 01283217414"
                     aria-label="phoneNumber"
                     id="phoneNumber"
+                    oninput="validatedInput(this,1)"
                   />
+                  <span
+                    style="font-size: 12px; color: oklch(0.645 0.246 16.439)"
+                    class="text-danger d-none mt-1"
+                  >
+                    Please enter a valid Egyptian phone number
+                  </span>
                 </div>
               </div>
               <div class="mb-3">
@@ -116,7 +132,14 @@
                     placeholder="name@example.com"
                     aria-label="emailAddress"
                     id="emailAddress"
+                    oninput="validatedInput(this,1)"
                   />
+                  <span
+                    style="font-size: 12px; color: oklch(0.645 0.246 16.439)"
+                    class="text-danger d-none mt-1"
+                  >
+                    Please enter a valid email address
+                  </span>
                 </div>
               </div>
               <div class="mb-3">
@@ -131,7 +154,14 @@
                     placeholder="Enter Address"
                     aria-label="Address"
                     id="Address"
+                    oninput="validatedInput(this,1)"
                   />
+                  <span
+                    style="font-size: 12px; color: oklch(0.645 0.246 16.439)"
+                    class="text-danger d-none mt-1"
+                  >
+                    Please enter a valid address
+                  </span>
                 </div>
               </div>
               <div class="mb-3">
@@ -214,6 +244,7 @@
                 class="save-contact fw-semibold border-0 text-white bg-success"
                 onclick="addContact();"
                 data-bs-dismiss="modal"
+                id="saveButton"
               >
                 <i class="fa-solid fa-check me-2 text-white"></i>
                 <span class="fw-normal">Save Contact</span>
@@ -240,6 +271,7 @@
                 class="btn-close"
                 data-bs-dismiss="modal"
                 aria-label="Close"
+                onclick="clearForm()"
               ></button>
             </div>
             <div class="modal-body">
@@ -255,7 +287,15 @@
                     placeholder="Enter Full Name"
                     aria-label="editedfullName"
                     id="editedfullName"
+                    oninput="validatedInput(this,2)"
                   />
+                  <span
+                    style="font-size: 12px; color: oklch(0.645 0.246 16.439)"
+                    class="text-danger d-none mt-1"
+                  >
+                    Name should contain only letters and spaces (2-50
+                    characters)
+                  </span>
                 </div>
               </div>
               <div class="mb-3">
@@ -270,7 +310,14 @@
                     placeholder="e.g., 01283217414"
                     aria-label="editedphoneNumber"
                     id="editedphoneNumber"
+                    oninput="validatedInput(this,2)"
                   />
+                  <span
+                    style="font-size: 12px; color: oklch(0.645 0.246 16.439)"
+                    class="text-danger d-none mt-1"
+                  >
+                    Please enter a valid Egyptian phone number
+                  </span>
                 </div>
               </div>
               <div class="mb-3">
@@ -286,7 +333,14 @@
                     placeholder="name@example.com"
                     aria-label="editedemailAddress"
                     id="editedemailAddress"
+                    oninput="validatedInput(this,2)"
                   />
+                  <span
+                    style="font-size: 12px; color: oklch(0.645 0.246 16.439)"
+                    class="text-danger d-none mt-1"
+                  >
+                    Please enter a valid email address
+                  </span>
                 </div>
               </div>
               <div class="mb-3">
@@ -301,7 +355,14 @@
                     placeholder="Enter Address"
                     aria-label="editedAddress"
                     id="editedAddress"
+                    oninput="validatedInput(this,2)"
                   />
+                  <span
+                    style="font-size: 12px; color: oklch(0.645 0.246 16.439)"
+                    class="text-danger d-none mt-1"
+                  >
+                    Please enter a valid address
+                  </span>
                 </div>
               </div>
               <div class="mb-3">

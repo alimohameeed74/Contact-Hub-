@@ -1,40 +1,42 @@
+"use strict"
 // Define Main Variables
-// var contactPhotoURL= document.
-var contactfullName=document.getElementById('fullName');
-var editedcontactfullName=document.getElementById('editedfullName');
-var contactphoneNumber=document.getElementById('phoneNumber');
-var editedcontactphoneNumber=document.getElementById('editedphoneNumber');
-var contactemailAddress=document.getElementById('emailAddress');
-var editedcontactemailAddress=document.getElementById('editedemailAddress');
-var contactAddress=document.getElementById('Address');
-var editedcontactAddress=document.getElementById('editedAddress');
-var contactgroup=document.getElementById('group');
-var editedcontactgroup=document.getElementById('editedgroup');
-var contactnotes=document.getElementById('notes');
-var editedcontactnotes=document.getElementById('editednotes');
-var noContacts=document.getElementById('no-contacts');
-var savedCards= document.getElementById('saved-cards');
-var hasFavorites=document.getElementById('has-favorites');
-var noFavorites=document.getElementById('no-favorites');
-var favoriteCheckBox= document.getElementById('favorite-checkbox');
-var editedfavoriteCheckBox= document.getElementById('editedfavorite-checkbox');
-var hasEmergency=document.getElementById('has-emergency');
-var noEmergency=document.getElementById('no-emergency');
-var emergencyCheckBox= document.getElementById('emergency-checkbox');
-var editedemergencyCheckBox= document.getElementById('editedemergency-checkbox');
-var emeContacts=document.getElementById('eme-contacts');
-var favContacts=document.getElementById('fav-contacts');
-var totalContacts=document.getElementById('total-contacts');
-var nOfContacts=document.getElementById('numOfContacts');
-var confirmButton= document.getElementById('confirmButton');
-var totalContactsBlackBox='';
-var favContactsBlackBox='';
-var emeContactsBlackBox='';
-var exampleModalLabel=document.getElementById('exampleModalLabel');
-var contacts=[];
-var favcontacts=[];
-var emecontacts=[];
-var infoNumbers={
+// let contactPhotoURL= document.
+let contactfullName=document.getElementById('fullName');
+let editedcontactfullName=document.getElementById('editedfullName');
+let contactphoneNumber=document.getElementById('phoneNumber');
+let editedcontactphoneNumber=document.getElementById('editedphoneNumber');
+let contactemailAddress=document.getElementById('emailAddress');
+let editedcontactemailAddress=document.getElementById('editedemailAddress');
+let contactAddress=document.getElementById('Address');
+let editedcontactAddress=document.getElementById('editedAddress');
+let contactgroup=document.getElementById('group');
+let editedcontactgroup=document.getElementById('editedgroup');
+let contactnotes=document.getElementById('notes');
+let editedcontactnotes=document.getElementById('editednotes');
+let noContacts=document.getElementById('no-contacts');
+let savedCards= document.getElementById('saved-cards');
+let hasFavorites=document.getElementById('has-favorites');
+let noFavorites=document.getElementById('no-favorites');
+let favoriteCheckBox= document.getElementById('favorite-checkbox');
+let editedfavoriteCheckBox= document.getElementById('editedfavorite-checkbox');
+let hasEmergency=document.getElementById('has-emergency');
+let noEmergency=document.getElementById('no-emergency');
+let emergencyCheckBox= document.getElementById('emergency-checkbox');
+let editedemergencyCheckBox= document.getElementById('editedemergency-checkbox');
+let emeContacts=document.getElementById('eme-contacts');
+let favContacts=document.getElementById('fav-contacts');
+let totalContacts=document.getElementById('total-contacts');
+let nOfContacts=document.getElementById('numOfContacts');
+let confirmButton= document.getElementById('confirmButton');
+let saveButton= document.getElementById('saveButton');
+let totalContactsBlackBox='';
+let favContactsBlackBox='';
+let emeContactsBlackBox='';
+let exampleModalLabel=document.getElementById('exampleModalLabel');
+let contacts=[];
+let favcontacts=[];
+let emecontacts=[];
+let infoNumbers={
     totalContacts:0,
     favContacts:0,
     emeContacts:0,
@@ -44,8 +46,52 @@ var infoNumbers={
 
 
 // Define Main Functions
+function validatedInput(input,number){
+  let isValid;
+  let validationObject;
+  if(number==1){
+    validationObject={
+      fullName: /^[A-Za-z]{2,50}(?:\s[A-Za-z]{2,50}){0,3}$/,
+      phoneNumber: /^01[0125][0-9]{8}$/,
+      emailAddress: /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/,
+      Address: /^[A-Za-z0-9\s,.-]{5,}$/,
+    }
+    
+  }
+  else if (number==2){
+    validationObject={
+      editedfullName: /^[A-Za-z]{2,50}(?:\s[A-Za-z]{2,50}){0,3}$/,
+      editedphoneNumber: /^01[0125][0-9]{8}$/,
+      editedemailAddress: /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/,
+      editedAddress: /^[A-Za-z0-9\s,.-]{5,}$/,
+    }
+  }
+  isValid=validationObject[input.getAttribute('id')].test(input.value);
+    
+    if(isValid){
+      input.classList.add('is-valid');
+      input.classList.remove('is-invalid');
+      input.nextElementSibling.classList.add('d-none');
+    }
+    else{
+    input.classList.add('is-invalid');
+    input.classList.remove('is-valid');
+    input.nextElementSibling.classList.remove('d-none');
+    }
+  return isValid;
+}
+
+
+
 function addContact(){
-  var newContact={
+   if(validatedInput(contactfullName,1)
+      &&
+      validatedInput(contactAddress,1)
+      &&
+      validatedInput(contactemailAddress,1)
+      &&
+      validatedInput(contactphoneNumber,1)){
+    let newContact={
     // photoURL:'',
     fullName: contactfullName.value,
     phoneNumber: contactphoneNumber.value, 
@@ -71,36 +117,28 @@ function addContact(){
     diplayFavContacts(contacts);
     diplayEmeContacts(contacts);
     editInfo(infoNumbers,contacts);
-    clearForm();
     // console.log(contacts)
 
 
+      }
+      else{
+        Swal.fire({
+      title: "Invalid Operation!",
+      text: "Unable to add the contact, please check the required fields.",
+      icon: "error",
+      confirmButtonColor: "#d33",
+      showConfirmButton: true,
+    });
+      }
 
+    clearForm();
 
-    
-// function addProduct(){
-//   if(validateInput(productName)
-//   && validateInput(productCat)
-//   && validateInput(productDes)
-//   && validateInput(productPrice)){
-//     addBtn.removeAttribute('disabled');
-    
-
-//   }
-//   else{
-//     addBtn.setAttribute('disabled', true);
-
-//   }
-
-
-
-   
-// }
 
 }
 
+
 function confirmDelete(cID){
-  var deletedName= contacts[cID].fullName.slice(0,contacts[cID].fullName.indexOf(' '));
+  let deletedName= contacts[cID].fullName.slice(0,contacts[cID].fullName.indexOf(' '));
   Swal.fire({
   title: "Delete Contact?",
   text: `Are you sure you want to delete ${deletedName}? This action cannot be undone.`,
@@ -124,7 +162,6 @@ function confirmDelete(cID){
 }
 
 
-
 function removeContact(cID){
   contacts.splice(cID,1);
   localStorage.setItem('contacts',JSON.stringify(contacts));
@@ -136,8 +173,6 @@ function removeContact(cID){
 }
 
 
-
-
 function addToEme(cID){
     contacts[cID].isEme=!contacts[cID].isEme;
     localStorage.setItem('contacts', JSON.stringify(contacts));
@@ -147,6 +182,8 @@ function addToEme(cID){
  
 
 }
+
+
 function addToFav(cID){
     contacts[cID].isFav=!contacts[cID].isFav;
     localStorage.setItem('contacts', JSON.stringify(contacts));
@@ -170,44 +207,89 @@ function editContact(cID){
 }
 
 function confirmUpdate(){
-  contacts[+confirmButton.editedId].fullName=editedcontactfullName.value;
-  contacts[+confirmButton.editedId].phoneNumber=editedcontactphoneNumber.value;
-  contacts[+confirmButton.editedId].emailAddress=editedcontactemailAddress.value;
-  contacts[+confirmButton.editedId].Address=editedcontactAddress.value;
-  contacts[+confirmButton.editedId].group=editedcontactgroup.value;
-  contacts[+confirmButton.editedId].notes=editedcontactnotes.value;
-  contacts[+confirmButton.editedId].isFav=editedfavoriteCheckBox.checked;
-  contacts[+confirmButton.editedId].isEme=editedemergencyCheckBox.checked;
-  localStorage.setItem('contacts',JSON.stringify(contacts));
-  Swal.fire({
+  if(validatedInput(editedcontactfullName,2)
+      &&
+      validatedInput(editedcontactphoneNumber,2)
+      &&
+      validatedInput(editedcontactemailAddress,2)
+      &&
+      validatedInput(editedcontactAddress,2)){
+
+        contacts[+confirmButton.editedId].fullName=editedcontactfullName.value;
+        contacts[+confirmButton.editedId].phoneNumber=editedcontactphoneNumber.value;
+        contacts[+confirmButton.editedId].emailAddress=editedcontactemailAddress.value;
+        contacts[+confirmButton.editedId].Address=editedcontactAddress.value;
+        contacts[+confirmButton.editedId].group=editedcontactgroup.value;
+        contacts[+confirmButton.editedId].notes=editedcontactnotes.value;
+        contacts[+confirmButton.editedId].isFav=editedfavoriteCheckBox.checked;
+        contacts[+confirmButton.editedId].isEme=editedemergencyCheckBox.checked;
+        localStorage.setItem('contacts',JSON.stringify(contacts));
+        Swal.fire({
       title: "Updated!",
       text: "Contact has been updated successfully.",
       icon: "success",
       showConfirmButton: false,
       timer: 2000,
     });
-  diplayContacts(contacts);
-  diplayFavContacts(contacts);
-  diplayEmeContacts(contacts);
-  editInfo(infoNumbers,contacts);;
-}
+      diplayContacts(contacts);
+      diplayFavContacts(contacts);
+      diplayEmeContacts(contacts);
+      editInfo(infoNumbers,contacts);
+      }
+      else{
+        Swal.fire({
+      title: "Invalid Operation!",
+      text: "Unable to update the contact, please check the required fields.",
+      icon: "error",
+      confirmButtonColor: "#d33",
+      showConfirmButton: true,
+    });
+  
+  }
+    clearForm();
 
+
+}
 
 
 function clearForm(){
     contactfullName.value='';
+    contactfullName.classList.remove('is-valid');
+    contactfullName.classList.remove('is-invalid');
+    contactfullName.nextElementSibling.classList.add('d-none');
     contactphoneNumber.value=''; 
+    contactphoneNumber.classList.remove('is-valid');
+    contactphoneNumber.classList.remove('is-invalid');
+    contactphoneNumber.nextElementSibling.classList.add('d-none');
     contactemailAddress.value=''; 
+    contactemailAddress.classList.remove('is-valid');
+    contactemailAddress.classList.remove('is-invalid');
+    contactemailAddress.nextElementSibling.classList.add('d-none');
     contactAddress.value=''; 
+    contactAddress.classList.remove('is-valid');
+    contactAddress.classList.remove('is-invalid');
+    contactAddress.nextElementSibling.classList.add('d-none');
     contactgroup.value='Friends';
     contactnotes.value='';
     favoriteCheckBox.checked=false;
     emergencyCheckBox.checked=false;
     // --------------------------------
     editedcontactfullName.value='';
+    editedcontactfullName.classList.remove('is-valid');
+    editedcontactfullName.classList.remove('is-invalid');
+    editedcontactfullName.nextElementSibling.classList.add('d-none');
     editedcontactphoneNumber.value=''; 
+    editedcontactphoneNumber.classList.remove('is-valid');
+    editedcontactphoneNumber.classList.remove('is-invalid');
+    editedcontactphoneNumber.nextElementSibling.classList.add('d-none');
     editedcontactemailAddress.value=''; 
+    editedcontactemailAddress.classList.remove('is-valid');
+    editedcontactemailAddress.classList.remove('is-invalid');
+    editedcontactemailAddress.nextElementSibling.classList.add('d-none');
     editedcontactAddress.value=''; 
+    editedcontactAddress.classList.remove('is-valid');
+    editedcontactAddress.classList.remove('is-invalid');
+    editedcontactAddress.nextElementSibling.classList.add('d-none');
     editedcontactgroup.value='Friends';
     editedcontactnotes.value='';
     editedfavoriteCheckBox.checked=false;
@@ -216,9 +298,9 @@ function clearForm(){
 
 
 function editInfo(info,arr){
-  var fav=0,eme=0;
+  let fav=0,eme=0;
   info.totalContacts=arr.length;
-  for (var i=0;i<arr.length;i++){
+  for (let i=0;i<arr.length;i++){
     if(arr[i].isFav){
       fav++;
     }
@@ -261,7 +343,7 @@ function diplayContacts(myList){
     else{
         noContacts.classList.add('d-none');
         savedCards.classList.remove('d-none');
-        for(var i=0;i<myList.length;i++){
+        for(let i=0;i<myList.length;i++){
             totalContactsBlackBox+=`
             <div class="col-sm-6">
                   <div
@@ -319,12 +401,13 @@ function diplayContacts(myList){
                       class="contact-card-footer py-2 d-flex justify-content-between w-100"
                     >
                       <div class="d-flex">
-                        <i
+                        <a href='tel:${myList[i].phoneNumber}'><i
                           class="fa-solid rounded-2 fa-phone icon2 d-flex justify-content-center align-items-center me-2"
-                        ></i>
+                        ></i></a>
+                        <a href='mailto:${myList[i].emailAddress}'>
                         <i
                           class="fa-solid rounded-2 fa-envelope icon2 d-flex justify-content-center align-items-center me-2"
-                        ></i>
+                        ></i></a>
                       </div>
                       <div class="d-flex">
                         <button onclick='addToFav(${i});'  style='background-color:transparent' class="d-flex justify-content-center align-items-center p-0 ms-2 border-0 rounded-2">
@@ -351,8 +434,8 @@ function diplayContacts(myList){
 function diplayFavContacts(myList){
   favContactsBlackBox='';
   // console.log(myList.length)
-    var filteredArray=[];
-    for (var i =0;i<myList.length;i++){
+    let filteredArray=[];
+    for (let i =0;i<myList.length;i++){
       if(myList[i].isFav){
         filteredArray.push(myList[i]);
       }
@@ -367,7 +450,7 @@ function diplayFavContacts(myList){
         hasFavorites.classList.remove('d-none');
         document.getElementById('has-favorites-c').classList.remove('d-none')
 
-        for(var i=0;i<filteredArray.length;i++){
+        for(let i=0;i<filteredArray.length;i++){
             favContactsBlackBox+=`<div class="col-sm-6 col-xl-12">
              <div
                  class="favorite-item rounded-3 px-1 py-2 d-flex justify-content-start align-items-center"
@@ -380,9 +463,9 @@ function diplayFavContacts(myList){
                  <h4 class="fw-semibold name mb-0">${filteredArray[i].fullName}</h4>
                  <p class="fw-normal des mb-0">${filteredArray[i].phoneNumber}</p>
                  </div>
-                 <i
+                 <a class='ms-auto' href='tel:${myList[i].phoneNumber}'><i
                  class="fa-solid rounded-3 fa-phone ms-auto d-flex justify-content-center align-items-center"
-                 ></i>
+                 ></i></a>
              </div>
              </div>`;
         }
@@ -393,8 +476,8 @@ function diplayFavContacts(myList){
 function diplayEmeContacts(myList){
     emeContactsBlackBox='';
     // console.log(myList.length)
-    var filteredArray=[];
-    for (var i =0;i<myList.length;i++){
+    let filteredArray=[];
+    for (let i =0;i<myList.length;i++){
       if(myList[i].isEme){
         filteredArray.push(myList[i]);
       }
@@ -409,7 +492,7 @@ function diplayEmeContacts(myList){
         hasEmergency.classList.remove('d-none');
         document.getElementById('has-emergency-c').classList.remove('d-none');
 
-        for(var i=0;i<filteredArray.length;i++){
+        for(let i=0;i<filteredArray.length;i++){
             emeContactsBlackBox+=`<div class="col-sm-6 col-xl-12">
                     <div
                       class="emergency-item rounded-3 px-1 py-2 d-flex justify-content-start align-items-center"
@@ -422,9 +505,10 @@ function diplayEmeContacts(myList){
                         <h4 class="fw-semibold name mb-0">${filteredArray[i].fullName}</h4>
                         <p class="fw-normal des mb-0">${filteredArray[i].phoneNumber}</p>
                       </div>
+                      <a class='ms-auto' href='tel:${myList[i].phoneNumber}'>
                       <i
-                        class="fa-solid rounded-3 fa-phone ms-auto d-flex justify-content-center align-items-center"
-                      ></i>
+                 class="fa-solid rounded-3 fa-phone ms-auto d-flex justify-content-center align-items-center"
+                 ></i></a>
                     </div>
                   </div>`;
         }
@@ -433,3 +517,5 @@ function diplayEmeContacts(myList){
 }
 // Start Main Logic
 init();
+
+
