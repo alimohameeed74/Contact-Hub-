@@ -22,6 +22,7 @@
     --v-26px: 26px;
     --v-30px: 30px;
     --v-32px: 32px;
+    --v-40px: 40px;
     --fz-10: 10px;
     --fz-11: 11px;
     --fz-12: 12px;
@@ -424,6 +425,29 @@ h1{
     scrollbar-width: none;    
     overflow-y: scroll;
     overflow-x: hidden;
+}
+
+
+#no-contacts h2{
+    color:oklch(0.551 0.027 264.364);
+    font-weight: var(--fw-500);
+    font-size: var(--fz-16);
+}
+
+#no-contacts p{
+    color:oklch(0.707 0.022 261.325);
+    font-size: var(--fz-14);
+}
+
+#no-contacts .fa-address-book {
+    border-radius: var(--v-14px);
+    padding: var(--v-40px);
+    font-size: var(--fz-30);
+    background: #F3F4F6;
+}
+
+#no-contacts .fa-address-book::before {
+    color:#D1D5DC;
 }
 
 

@@ -30,7 +30,6 @@ var confirmButton= document.getElementById('confirmButton');
 var totalContactsBlackBox='';
 var favContactsBlackBox='';
 var emeContactsBlackBox='';
-var isAddPressed=true;
 var exampleModalLabel=document.getElementById('exampleModalLabel');
 var contacts=[];
 var favcontacts=[];
@@ -139,6 +138,25 @@ function removeContact(cID){
 
 
 
+function addToEme(cID){
+    contacts[cID].isEme=!contacts[cID].isEme;
+    localStorage.setItem('contacts', JSON.stringify(contacts));
+    diplayContacts(contacts);
+    diplayEmeContacts(contacts);
+    editInfo(infoNumbers,contacts);
+ 
+
+}
+function addToFav(cID){
+    contacts[cID].isFav=!contacts[cID].isFav;
+    localStorage.setItem('contacts', JSON.stringify(contacts));
+    diplayContacts(contacts);
+    diplayFavContacts(contacts);
+    editInfo(infoNumbers,contacts);
+ 
+
+}
+
 function editContact(cID){
     editedcontactfullName.value=contacts[cID].fullName;
     editedcontactphoneNumber.value=contacts[cID].phoneNumber;
@@ -176,33 +194,62 @@ function confirmUpdate(){
 
 
 
+function clearForm(){
+    contactfullName.value='';
+    contactphoneNumber.value=''; 
+    contactemailAddress.value=''; 
+    contactAddress.value=''; 
+    contactgroup.value='Friends';
+    contactnotes.value='';
+    favoriteCheckBox.checked=false;
+    emergencyCheckBox.checked=false;
+    // --------------------------------
+    editedcontactfullName.value='';
+    editedcontactphoneNumber.value=''; 
+    editedcontactemailAddress.value=''; 
+    editedcontactAddress.value=''; 
+    editedcontactgroup.value='Friends';
+    editedcontactnotes.value='';
+    editedfavoriteCheckBox.checked=false;
+    editedemergencyCheckBox.checked=false;
+}
 
 
+function editInfo(info,arr){
+  var fav=0,eme=0;
+  info.totalContacts=arr.length;
+  for (var i=0;i<arr.length;i++){
+    if(arr[i].isFav){
+      fav++;
+    }
+    if(arr[i].isEme){
+      eme++;
+    }
+  }
+  info.favContacts=fav;
+  info.emeContacts=eme;
+  putInfo(info);
+}
 
 
+function putInfo(info){
+    emeContacts.innerHTML=info.emeContacts;
+    totalContacts.innerHTML=info.totalContacts;
+    favContacts.innerHTML=info.favContacts;
+}
 
 
+function init(){
+    if (localStorage.getItem('contacts')){
+        contacts=JSON.parse(localStorage.getItem('contacts'));
+    }
+    diplayContacts(contacts);
+    diplayFavContacts(contacts);
+    diplayEmeContacts(contacts);
+    editInfo(infoNumbers,contacts);
 
-//     localStorage.setItem('allProducts',JSON.stringify(productArr));
-//     productArr=JSON.parse(localStorage.getItem('allProducts'));
-//       diplayProducts(productArr);
-//       clearForm();
-      
-
-//   }
-//   else{
-//     editBtn.setAttribute('disabled', true);
-
-//   }
-
-
-// }
-
-
-
-
-
-
+    // console.log(contacts);
+}
 
 function diplayContacts(myList){
     totalContactsBlackBox='';
@@ -280,15 +327,16 @@ function diplayContacts(myList){
                         ></i>
                       </div>
                       <div class="d-flex">
-                        <i
-                          class="fa-solid rounded-2 fa-star icon2 d-flex justify-content-center align-items-center me-2"
-                        ></i>
-                        <i
-                          class="fa-solid rounded-2 fa-heart-pulse icon2 d-flex justify-content-center align-items-center me-2"
-                        ></i>
-                        <button  data-bs-toggle="modal" data-bs-target="#exampleModal1" onclick='editContact(${i});' style='background-color:transparent' class="d-flex justify-content-center align-items-center p-0 border-0 rounded-2">
+                        <button onclick='addToFav(${i});'  style='background-color:transparent' class="d-flex justify-content-center align-items-center p-0 ms-2 border-0 rounded-2">
+                        <i class="fa-solid rounded-2 fa-star icon2 d-flex justify-content-center align-items-center"></i></button>
+
+                         <button onclick='addToEme(${i});'  style='background-color:transparent' class="d-flex justify-content-center align-items-center p-0 ms-2 border-0 rounded-2">
+                        <i class="fa-solid rounded-2 fa-heart-pulse icon2 d-flex justify-content-center align-items-center"></i></button>
+
+                        <button  data-bs-toggle="modal" data-bs-target="#exampleModal1" onclick='editContact(${i});' style='background-color:transparent' class="d-flex justify-content-center align-items-center p-0 ms-2 border-0 rounded-2">
                         <i class="fa-solid rounded-2 fa-pen icon2 d-flex justify-content-center align-items-center"></i></button>
-                        <button onclick='confirmDelete(${i});' style='background-color:transparent' class="d-flex justify-content-center align-items-center p-0 border-0 rounded-2">
+
+                        <button onclick='confirmDelete(${i});' style='background-color:transparent' class="d-flex justify-content-center align-items-center p-0 ms-2 border-0 rounded-2">
                         <i class="fa-solid rounded-2 fa-trash icon2 d-flex justify-content-center align-items-center"></i></button>
                       </div>
                     </div>
@@ -383,65 +431,5 @@ function diplayEmeContacts(myList){
     }
     hasEmergency.innerHTML=emeContactsBlackBox;
 }
-
-function clearForm(){
-    contactfullName.value='';
-    contactphoneNumber.value=''; 
-    contactemailAddress.value=''; 
-    contactAddress.value=''; 
-    contactgroup.value='Friends';
-    contactnotes.value='';
-    favoriteCheckBox.checked=false;
-    emergencyCheckBox.checked=false;
-    // --------------------------------
-    editedcontactfullName.value='';
-    editedcontactphoneNumber.value=''; 
-    editedcontactemailAddress.value=''; 
-    editedcontactAddress.value=''; 
-    editedcontactgroup.value='Friends';
-    editedcontactnotes.value='';
-    editedfavoriteCheckBox.checked=false;
-    editedemergencyCheckBox.checked=false;
-}
-
-
-function editInfo(info,arr){
-  var fav=0,eme=0;
-  info.totalContacts=arr.length;
-  for (var i=0;i<arr.length;i++){
-    if(arr[i].isFav){
-      fav++;
-    }
-    if(arr[i].isEme){
-      eme++;
-    }
-  }
-  info.favContacts=fav;
-  info.emeContacts=eme;
-  putInfo(info);
-}
-
-
-
-
-function putInfo(info){
-    emeContacts.innerHTML=info.emeContacts;
-    totalContacts.innerHTML=info.totalContacts;
-    favContacts.innerHTML=info.favContacts;
-}
-
-
-function init(){
-    if (localStorage.getItem('contacts')){
-        contacts=JSON.parse(localStorage.getItem('contacts'));
-    }
-    diplayContacts(contacts);
-    diplayFavContacts(contacts);
-    diplayEmeContacts(contacts);
-    editInfo(infoNumbers,contacts);
-
-    // console.log(contacts);
-}
-
 // Start Main Logic
 init();

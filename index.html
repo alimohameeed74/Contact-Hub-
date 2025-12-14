@@ -470,9 +470,17 @@
             <div class="contacts-container my-4 py-2">
               <div
                 id="no-contacts"
-                class="d-none d-flex justify-content-center align-items-center"
+                class="d-none d-flex flex-column justify-content-center align-items-center"
               >
-                no contact yet
+                <i
+                  class="fa-solid fa-address-book d-flex justify-content-center align-items-center text-white mb-4"
+                ></i>
+                <div class="d-flex flex-column justify-content-between">
+                  <h2 class="fw-bold text-center mb-0">No contacts found</h2>
+                  <p class="fw-normal text-center mb-0">
+                    Click "Add Contact" to get started
+                  </p>
+                </div>
               </div>
               <div id="saved-cards" class="row gx-3 gy-3"></div>
             </div>
