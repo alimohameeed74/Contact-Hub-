@@ -654,6 +654,29 @@ h1{
   object-fit: cover;
   border-radius: 50%;
 }
+.profile-photo2 {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  background: linear-gradient(to right, #3F91FF, #2370FE);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.profile-photo2 i {
+  font-size: 40px;
+  color: white;
+}
+
+.profile-photo2 img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
 
 .change-photo-btn .fa-camera{
     color:#6A7282;

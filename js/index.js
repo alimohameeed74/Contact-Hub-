@@ -1,6 +1,8 @@
 "use strict"
 // Define Main Variables
 let uploadedPhotoURL='';
+let editeduploadedPhotoURL='';
+let previewImage1=document.getElementById('previewImage1');
 let contactfullName=document.getElementById('fullName');
 let editedcontactfullName=document.getElementById('editedfullName');
 let contactphoneNumber=document.getElementById('phoneNumber');
@@ -31,8 +33,6 @@ let confirmButton= document.getElementById('confirmButton');
 let saveButton= document.getElementById('saveButton');
 let searchInput= document.getElementById('searchInput');
 let exampleModalLabel=document.getElementById('exampleModalLabel');
-let searchWarning=document.getElementById('searchWarning');
-let searchNotWarning=document.getElementById('searchNotWarning');
 let totalContactsBlackBox='';
 let totalSearchedContactsBlackBox='';
 let favContactsBlackBox='';
@@ -53,6 +53,7 @@ let randomIndex=0;
 let contacts=[];
 let favcontacts=[];
 let emecontacts=[];
+let matchedArr=[];
 let infoNumbers={
     totalContacts:0,
     favContacts:0,
@@ -167,38 +168,106 @@ function addContact(){
 
 
 }
-function addToEme(cID){
-    contacts[cID].isEme=!contacts[cID].isEme;
+function addToEme(cID,number=0){
+    if(number===0){
+      contacts[cID].isEme=!contacts[cID].isEme;
+    }
+    else if(number===1){
+      let index=0;
+      for (let i=0;i<contacts.length;i++){
+        if (contacts[i].fullName == matchedArr[cID].fullName
+          && 
+          contacts[i].phoneNumber == matchedArr[cID].phoneNumber
+          &&
+          contacts[i].emailAddress == matchedArr[cID].emailAddress
+          &&
+          contacts[i].Address == matchedArr[cID].Address
+          &&
+          contacts[i].group == matchedArr[cID].group){
+            index=i;
+          }
+      }
+      contacts[index].isEme=!contacts[index].isEme;
+    }
     localStorage.setItem('contacts', JSON.stringify(contacts));
     diplayContacts(contacts);
     diplayEmeContacts(contacts);
     editInfo(infoNumbers,contacts);
- 
+    clearForm();
 
 }
-function addToFav(cID){
-    contacts[cID].isFav=!contacts[cID].isFav;
+function addToFav(cID,number=0){
+    if(number===0){
+      contacts[cID].isFav=!contacts[cID].isFav;
+
+    }
+    else if(number===1){
+      let index=0;
+      for (let i=0;i<contacts.length;i++){
+        if (contacts[i].fullName == matchedArr[cID].fullName
+          && 
+          contacts[i].phoneNumber == matchedArr[cID].phoneNumber
+          &&
+          contacts[i].emailAddress == matchedArr[cID].emailAddress
+          &&
+          contacts[i].Address == matchedArr[cID].Address
+          &&
+          contacts[i].group == matchedArr[cID].group){
+            index=i;
+          }
+      }
+      contacts[index].isFav=!contacts[index].isFav;
+
+      
+    }
     localStorage.setItem('contacts', JSON.stringify(contacts));
     diplayContacts(contacts);
     diplayFavContacts(contacts);
     editInfo(infoNumbers,contacts);
- 
-
+    clearForm();
 }
 
 
 // 3) Delete Contact
-function removeContact(cID){
-  contacts.splice(cID,1);
-  localStorage.setItem('contacts',JSON.stringify(contacts));
-  // console.log(contacts);
-  diplayContacts(contacts);
-  diplayFavContacts(contacts);
-  diplayEmeContacts(contacts);
-  editInfo(infoNumbers,contacts);
+function removeContact(cID,number){
+  if (number===0){
+    contacts.splice(cID,1);
+    localStorage.setItem('contacts',JSON.stringify(contacts));
+    // console.log(contacts);
+    diplayContacts(contacts);
+    diplayFavContacts(contacts);
+    diplayEmeContacts(contacts);
+    editInfo(infoNumbers,contacts);
+  }
+  else if (number===1){
+      let index=0;
+      // console.log(number);
+      // console.log(matchedArr[cID].fullName);
+      for (let i=0;i<contacts.length;i++){
+        if (contacts[i].fullName == matchedArr[cID].fullName
+          && 
+          contacts[i].phoneNumber == matchedArr[cID].phoneNumber
+          &&
+          contacts[i].emailAddress == matchedArr[cID].emailAddress
+          &&
+          contacts[i].Address == matchedArr[cID].Address
+          &&
+          contacts[i].group == matchedArr[cID].group){
+            index=i;
+          }
+      }
+    contacts.splice(index,1);
+    localStorage.setItem('contacts',JSON.stringify(contacts));
+    // console.log(contacts);
+    diplayContacts(contacts);
+    diplayFavContacts(contacts);
+    diplayEmeContacts(contacts);
+    editInfo(infoNumbers,contacts);
 }
-function confirmDelete(cID){
-  Swal.fire({
+}
+function confirmDelete(cID,number=0){
+  if(number===0){
+    Swal.fire({
   title: "Delete Contact?",
   text: `Are you sure you want to delete ${contacts[cID].fullName}? This action cannot be undone.`,
   icon: "warning",
@@ -215,24 +284,98 @@ function confirmDelete(cID){
       showConfirmButton: false,
       timer: 2000,
     });
-    removeContact(cID);
+    removeContact(cID,number);
   }
 });
+  }
+  else if(number===1){
+      let index=0;
+    for (let i=0;i<contacts.length;i++){
+        if (contacts[i].fullName == matchedArr[cID].fullName
+          && 
+          contacts[i].phoneNumber == matchedArr[cID].phoneNumber
+          &&
+          contacts[i].emailAddress == matchedArr[cID].emailAddress
+          &&
+          contacts[i].Address == matchedArr[cID].Address
+          &&
+          contacts[i].group == matchedArr[cID].group){
+            index=i;
+          }
+      }
+    Swal.fire({
+  title: "Delete Contact?",
+  text: `Are you sure you want to delete ${contacts[index].fullName}? This action cannot be undone.`,
+  icon: "warning",
+  showCancelButton: true,
+  confirmButtonColor: "#198754",
+  cancelButtonColor: "#d33",
+  confirmButtonText: "Yes, delete it!"
+}).then((result) => {
+  if (result.isConfirmed) {
+    Swal.fire({
+      title: "Deleted!",
+      text: "Contact has been deleted.",
+      icon: "success",
+      showConfirmButton: false,
+      timer: 2000,
+    });
+    removeContact(cID,number);
+  }
+});
+  }
+  clearForm();
 }
 
 
 // 4) Edit Contact
-function editContact(cID){
-  // console.log(cID)
-    editedcontactfullName.value=contacts[cID].fullName;
-    editedcontactphoneNumber.value=contacts[cID].phoneNumber;
-    editedcontactemailAddress.value=contacts[cID].emailAddress;
-    editedcontactAddress.value=contacts[cID].Address;
-    editedcontactgroup.value=contacts[cID].group;
-    editedcontactnotes.value=contacts[cID].notes;
-    editedfavoriteCheckBox.checked=contacts[cID].isFav;
-    editedemergencyCheckBox.checked=contacts[cID].isEme;
-    confirmButton.editedId=cID;
+function editContact(cID,number=0){
+  if (number===0){
+      // console.log(number);
+
+      editeduploadedPhotoURL=contacts[cID].photoURL;
+      displayPhotoFromDataURL(editeduploadedPhotoURL);
+      previewImage1.src=contacts[cID].photoURL;
+      editedcontactfullName.value=contacts[cID].fullName;
+      editedcontactphoneNumber.value=contacts[cID].phoneNumber;
+      editedcontactemailAddress.value=contacts[cID].emailAddress;
+      editedcontactAddress.value=contacts[cID].Address;
+      editedcontactgroup.value=contacts[cID].group;
+      editedcontactnotes.value=contacts[cID].notes;
+      editedfavoriteCheckBox.checked=contacts[cID].isFav;
+      editedemergencyCheckBox.checked=contacts[cID].isEme;
+      confirmButton.editedId=cID;
+    }
+    else if (number===1){
+      let index=0;
+      console.log(number);
+      console.log(matchedArr[cID].fullName);
+      for (let i=0;i<contacts.length;i++){
+        if (contacts[i].fullName == matchedArr[cID].fullName
+          && 
+          contacts[i].phoneNumber == matchedArr[cID].phoneNumber
+          &&
+          contacts[i].emailAddress == matchedArr[cID].emailAddress
+          &&
+          contacts[i].Address == matchedArr[cID].Address
+          &&
+          contacts[i].group == matchedArr[cID].group){
+            index=i;
+          }
+      }
+      editeduploadedPhotoURL=contacts[index].photoURL;
+      displayPhotoFromDataURL(editeduploadedPhotoURL);
+      previewImage1.src=contacts[index].photoURL;
+      editedcontactfullName.value=contacts[index].fullName;
+      editedcontactphoneNumber.value=contacts[index].phoneNumber;
+      editedcontactemailAddress.value=contacts[index].emailAddress;
+      editedcontactAddress.value=contacts[index].Address;
+      editedcontactgroup.value=contacts[index].group;
+      editedcontactnotes.value=contacts[index].notes;
+      editedfavoriteCheckBox.checked=contacts[index].isFav;
+      editedemergencyCheckBox.checked=contacts[index].isEme;
+      confirmButton.editedId=index;
+    }
 }
 function confirmUpdate(){
   if(validatedInput(editedcontactfullName,2)
@@ -242,7 +385,8 @@ function confirmUpdate(){
       validatedInput(editedcontactemailAddress,2)
       &&
       validatedInput(editedcontactAddress,2)){
-        
+
+          contacts[+confirmButton.editedId].photoURL=editeduploadedPhotoURL;
           contacts[+confirmButton.editedId].fullName=editedcontactfullName.value;
           contacts[+confirmButton.editedId].phoneNumber=editedcontactphoneNumber.value;
           contacts[+confirmButton.editedId].emailAddress=editedcontactemailAddress.value;
@@ -299,7 +443,7 @@ function editInfo(info,arr){
 
 // 5) Search about Any Contact
 function searchByName(input){
-  let matchedArr=[];
+  matchedArr=[];
   // console.log(input.value);
   if (input.value=='')
     diplayContacts(contacts);
@@ -319,7 +463,8 @@ function searchByName(input){
 // 6) Clear Forms
 function clearForm() {
     uploadedPhotoURL = '';
-    
+    editeduploadedPhotoURL='';
+    searchInput.value='';
     contactfullName.value = '';
     contactfullName.classList.remove('is-valid', 'is-invalid');
     contactfullName.nextElementSibling.classList.add('d-none');
@@ -367,6 +512,11 @@ function clearForm() {
     img.src = '';
     img.classList.add('d-none');
     icon.classList.remove('d-none');
+    const img2 = document.getElementById("previewImage1");
+    const icon2 = document.querySelector(".profile-photo2 i");
+    img2.src = '';
+    img2.classList.add('d-none');
+    icon2.classList.remove('d-none');
 }
 
 
@@ -411,14 +561,10 @@ function diplayContacts(myList){
     if (myList.length===0){
         noContacts.classList.remove('d-none');
         savedCards.classList.add('d-none');
-        searchWarning.classList.add('d-none');
-        searchNotWarning.classList.add('d-none')
       }
       else{
         noContacts.classList.add('d-none');
         savedCards.classList.remove('d-none');
-        searchNotWarning.classList.remove('d-none')
-        searchWarning.classList.add('d-none');
         for(let i=0;i<myList.length;i++){
             totalContactsBlackBox+=`
             <div class="col-sm-6">
@@ -510,18 +656,14 @@ function diplayContacts(myList){
 }
 function diplaySearchedContacts(myList){
   totalSearchedContactsBlackBox='';
-    // console.log(myList.length)
+    console.log(myList)
     if (myList.length===0){
         noContacts.classList.remove('d-none');
         savedCards.classList.add('d-none');
-        searchWarning.classList.add('d-none');
-        searchNotWarning.classList.add('d-none');
       }
       else{
         noContacts.classList.add('d-none');
         savedCards.classList.remove('d-none');
-        searchWarning.classList.remove('d-none');
-        searchNotWarning.classList.add('d-none');
         for(let i=0;i<myList.length;i++){
             totalSearchedContactsBlackBox+=`
             <div class="col-sm-6">
@@ -588,6 +730,19 @@ function diplaySearchedContacts(myList){
                         <i
                           class="fa-solid rounded-2 fa-envelope icon2 d-flex justify-content-center align-items-center me-2"
                         ></i></a>
+                      </div>
+                      <div class="d-flex">
+                        <button onclick='addToFav(${i},1);'  style='background-color:transparent' class="d-flex justify-content-center align-items-center p-0 ms-2 border-0 rounded-2">
+                        <i class="fa-solid rounded-2 fa-star icon2 d-flex justify-content-center align-items-center"></i></button>
+
+                         <button onclick='addToEme(${i},1);'  style='background-color:transparent' class="d-flex justify-content-center align-items-center p-0 ms-2 border-0 rounded-2">
+                        <i class="fa-solid rounded-2 fa-heart-pulse icon2 d-flex justify-content-center align-items-center"></i></button>
+
+                        <button  data-bs-toggle="modal" data-bs-target="#exampleModal1" onclick='editContact(${i},1);' style='background-color:transparent' class="d-flex justify-content-center align-items-center p-0 ms-2 border-0 rounded-2">
+                        <i class="fa-solid rounded-2 fa-pen icon2 d-flex justify-content-center align-items-center"></i></button>
+
+                        <button onclick='confirmDelete(${i},1);' style='background-color:transparent' class="d-flex justify-content-center align-items-center p-0 ms-2 border-0 rounded-2">
+                        <i class="fa-solid rounded-2 fa-trash icon2 d-flex justify-content-center align-items-center"></i></button>
                       </div>
                     </div>
                   </div>
@@ -711,8 +866,26 @@ function uplaodPhoto(input) {
   }
 }
 
+// 13) Take a Photo from user
+function uplaodPhoto2(input) {
+  if (input.files && input.files[0]) {
+    const reader2 = new FileReader();
+    const img2 = document.getElementById("previewImage1");
+    const icon2 = document.querySelector(".profile-photo2 i");
 
-// 13) Return Name to Show
+    reader2.onload = function (e) {
+      img2.src = e.target.result;
+      editeduploadedPhotoURL=e.target.result;
+      img2.classList.remove("d-none");
+      icon2.classList.add("d-none");
+    };
+
+    reader2.readAsDataURL(input.files[0]);
+  }
+}
+
+
+// 14) Return Name to Show
 function getName(name) {
     if (!name) return '';
     const words = name.trim().split(' ');
@@ -723,6 +896,20 @@ function getName(name) {
     }
 }
 
+
+function displayPhotoFromDataURL(dataURL) {
+  const img = document.getElementById("previewImage1");
+  const icon = document.querySelector(".profile-photo2 i");
+
+  if (dataURL) {
+    img.src = dataURL;         
+    img.classList.remove("d-none");
+    icon.classList.add("d-none");
+  } else {
+    img.classList.add("d-none");
+    icon.classList.remove("d-none");
+  }
+}
 
 
 // Start Main Logic
