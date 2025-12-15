@@ -517,6 +517,7 @@ function clearForm() {
     img2.src = '';
     img2.classList.add('d-none');
     icon2.classList.remove('d-none');
+    diplayContacts(contacts);
 }
 
 
@@ -896,7 +897,7 @@ function getName(name) {
     }
 }
 
-
+// 15) Display a Photo
 function displayPhotoFromDataURL(dataURL) {
   const img = document.getElementById("previewImage1");
   const icon = document.querySelector(".profile-photo2 i");
