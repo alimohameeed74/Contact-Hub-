@@ -1,6 +1,6 @@
 "use strict"
 // Define Main Variables
-// let contactPhotoURL= document.
+let uploadedPhotoURL='';
 let contactfullName=document.getElementById('fullName');
 let editedcontactfullName=document.getElementById('editedfullName');
 let contactphoneNumber=document.getElementById('phoneNumber');
@@ -37,6 +37,19 @@ let totalContactsBlackBox='';
 let totalSearchedContactsBlackBox='';
 let favContactsBlackBox='';
 let emeContactsBlackBox='';
+const gradients = [
+  "linear-gradient(to right, #F91660, #EE006D)",
+  "linear-gradient(to right, #00BFFF, #1E90FF)",
+  "linear-gradient(to right, #32CD32, #228B22)",
+  "linear-gradient(to right, #FFD700, #FFA500)",
+  "linear-gradient(to right, #FF4500, #FF6347)",
+  "linear-gradient(to right, #8A2BE2, #9400D3)",
+  "linear-gradient(to right, #00FA9A, #3CB371)",
+  "linear-gradient(to right, #FF69B4, #FF1493)",
+  "linear-gradient(to right, #1E90FF, #4169E1)",
+  "linear-gradient(to right, #FF8C00, #FF7F50)"
+];
+let randomIndex=0;
 let contacts=[];
 let favcontacts=[];
 let emecontacts=[];
@@ -90,6 +103,7 @@ function validatedInput(input,number){
 
 // 2) Add New Contact
 function addContact(){
+  // console.log(uploadedPhotoURL)
    if(validatedInput(contactfullName,1)
       &&
       validatedInput(contactAddress,1)
@@ -108,7 +122,7 @@ function addContact(){
         }
         else{
             let newContact={
-            // photoURL:'',
+            photoURL:uploadedPhotoURL,
             fullName: contactfullName.value,
             phoneNumber: contactphoneNumber.value, 
             emailAddress: contactemailAddress.value, 
@@ -228,6 +242,7 @@ function confirmUpdate(){
       validatedInput(editedcontactemailAddress,2)
       &&
       validatedInput(editedcontactAddress,2)){
+        
           contacts[+confirmButton.editedId].fullName=editedcontactfullName.value;
           contacts[+confirmButton.editedId].phoneNumber=editedcontactphoneNumber.value;
           contacts[+confirmButton.editedId].emailAddress=editedcontactemailAddress.value;
@@ -249,6 +264,8 @@ function confirmUpdate(){
         diplayEmeContacts(contacts);
         editInfo(infoNumbers,contacts);
         }
+
+        
       else{
         Swal.fire({
       title: "Invalid Operation!",
@@ -283,7 +300,7 @@ function editInfo(info,arr){
 // 5) Search about Any Contact
 function searchByName(input){
   let matchedArr=[];
-  console.log(input.value);
+  // console.log(input.value);
   if (input.value=='')
     diplayContacts(contacts);
   else{
@@ -300,48 +317,56 @@ function searchByName(input){
 
 
 // 6) Clear Forms
-function clearForm(){
-    contactfullName.value='';
-    contactfullName.classList.remove('is-valid');
-    contactfullName.classList.remove('is-invalid');
+function clearForm() {
+    uploadedPhotoURL = '';
+    
+    contactfullName.value = '';
+    contactfullName.classList.remove('is-valid', 'is-invalid');
     contactfullName.nextElementSibling.classList.add('d-none');
-    contactphoneNumber.value=''; 
-    contactphoneNumber.classList.remove('is-valid');
-    contactphoneNumber.classList.remove('is-invalid');
+
+    contactphoneNumber.value = '';
+    contactphoneNumber.classList.remove('is-valid', 'is-invalid');
     contactphoneNumber.nextElementSibling.classList.add('d-none');
-    contactemailAddress.value=''; 
-    contactemailAddress.classList.remove('is-valid');
-    contactemailAddress.classList.remove('is-invalid');
+
+    contactemailAddress.value = '';
+    contactemailAddress.classList.remove('is-valid', 'is-invalid');
     contactemailAddress.nextElementSibling.classList.add('d-none');
-    contactAddress.value=''; 
-    contactAddress.classList.remove('is-valid');
-    contactAddress.classList.remove('is-invalid');
+
+    contactAddress.value = '';
+    contactAddress.classList.remove('is-valid', 'is-invalid');
     contactAddress.nextElementSibling.classList.add('d-none');
-    contactgroup.value='Friends';
-    contactnotes.value='';
-    favoriteCheckBox.checked=false;
-    emergencyCheckBox.checked=false;
-    // --------------------------------
-    editedcontactfullName.value='';
-    editedcontactfullName.classList.remove('is-valid');
-    editedcontactfullName.classList.remove('is-invalid');
+
+    contactgroup.value = 'Friends';
+    contactnotes.value = '';
+    favoriteCheckBox.checked = false;
+    emergencyCheckBox.checked = false;
+
+    editedcontactfullName.value = '';
+    editedcontactfullName.classList.remove('is-valid', 'is-invalid');
     editedcontactfullName.nextElementSibling.classList.add('d-none');
-    editedcontactphoneNumber.value=''; 
-    editedcontactphoneNumber.classList.remove('is-valid');
-    editedcontactphoneNumber.classList.remove('is-invalid');
+
+    editedcontactphoneNumber.value = '';
+    editedcontactphoneNumber.classList.remove('is-valid', 'is-invalid');
     editedcontactphoneNumber.nextElementSibling.classList.add('d-none');
-    editedcontactemailAddress.value=''; 
-    editedcontactemailAddress.classList.remove('is-valid');
-    editedcontactemailAddress.classList.remove('is-invalid');
+
+    editedcontactemailAddress.value = '';
+    editedcontactemailAddress.classList.remove('is-valid', 'is-invalid');
     editedcontactemailAddress.nextElementSibling.classList.add('d-none');
-    editedcontactAddress.value=''; 
-    editedcontactAddress.classList.remove('is-valid');
-    editedcontactAddress.classList.remove('is-invalid');
+
+    editedcontactAddress.value = '';
+    editedcontactAddress.classList.remove('is-valid', 'is-invalid');
     editedcontactAddress.nextElementSibling.classList.add('d-none');
-    editedcontactgroup.value='Friends';
-    editedcontactnotes.value='';
-    editedfavoriteCheckBox.checked=false;
-    editedemergencyCheckBox.checked=false;
+
+    editedcontactgroup.value = 'Friends';
+    editedcontactnotes.value = '';
+    editedfavoriteCheckBox.checked = false;
+    editedemergencyCheckBox.checked = false;
+
+    const img = document.getElementById("previewImage");
+    const icon = document.querySelector(".profile-photo i");
+    img.src = '';
+    img.classList.add('d-none');
+    icon.classList.remove('d-none');
 }
 
 
@@ -355,6 +380,7 @@ function putInfo(info){
 
 // 8) Initalization Function
 function init(){
+    randomIndex=Math.floor(Math.random() * gradients.length);
     if (localStorage.getItem('contacts')){
         contacts=JSON.parse(localStorage.getItem('contacts'));
     }
@@ -401,11 +427,12 @@ function diplayContacts(myList){
                   >
                     <div class="mb-3 d-flex">
                       <span
+                      style='${(myList[i].photoURL == '') ? `background: ${gradients[randomIndex]};` : `background-image: url(${myList[i].photoURL});`}'
                         class="icon position-relative d-flex justify-content-center align-items-center text-white me-3 fw-bold"
                         >
                         <i class='fa-solid text-white fa-star d-${(myList[i].isFav) ? 'flex':'none'} justify-content-center align-items-center'></i>
-                        A
-                        <i class='fa-solid text-white fa-heart-pulse d-${(myList[i].isEme) ? 'flex':'none'} justify-content-center align-items-center'></i>
+                        <span class='opacity-${(myList[i].photoURL == '') ? '100' : '0'}'>${getName(myList[i].fullName)}</span>
+                      <i class='fa-solid text-white fa-heart-pulse d-${(myList[i].isEme) ? 'flex':'none'} justify-content-center align-items-center'></i> 
                       </span
                       >
                       <div class="d-flex flex-column justify-content-center">
@@ -503,11 +530,12 @@ function diplaySearchedContacts(myList){
                   >
                     <div class="mb-3 d-flex">
                       <span
+                      style='${(myList[i].photoURL == '') ? `background: ${gradients[randomIndex]};` : `background-image: url(${myList[i].photoURL});`}'
                         class="icon position-relative d-flex justify-content-center align-items-center text-white me-3 fw-bold"
                         >
                         <i class='fa-solid text-white fa-star d-${(myList[i].isFav) ? 'flex':'none'} justify-content-center align-items-center'></i>
-                        A
-                        <i class='fa-solid text-white fa-heart-pulse d-${(myList[i].isEme) ? 'flex':'none'} justify-content-center align-items-center'></i>
+                        <span class='opacity-${(myList[i].photoURL == '') ? '100' : '0'}'>${getName(myList[i].fullName)}</span>
+                      <i class='fa-solid text-white fa-heart-pulse d-${(myList[i].isEme) ? 'flex':'none'} justify-content-center align-items-center'></i> 
                       </span
                       >
                       <div class="d-flex flex-column justify-content-center">
@@ -595,9 +623,9 @@ function diplayFavContacts(myList){
                  class="favorite-item rounded-3 px-1 py-2 d-flex justify-content-start align-items-center"
              >
                  <span
+                style='${(filteredArray[i].photoURL == '') ? `background: ${gradients[randomIndex]};` : `background-image: url(${filteredArray[i].photoURL});`}'
                  class="icon d-flex justify-content-center align-items-center text-white me-2 fw-bold"
-                 >A</span
-                 >
+                 ><span class='opacity-${(filteredArray[i].photoURL == '') ? '100' : '0'}'>${getName(filteredArray[i].fullName)}</span></span>
                  <div>
                  <h4 class="fw-semibold name mb-0">${filteredArray[i].fullName}</h4>
                  <p class="fw-normal des mb-0">${filteredArray[i].phoneNumber}</p>
@@ -636,8 +664,10 @@ function diplayEmeContacts(myList){
                       class="emergency-item rounded-3 px-1 py-2 d-flex justify-content-start align-items-center"
                     >
                       <span
-                        class="icon d-flex justify-content-center align-items-center text-white me-2 fw-bold"
-                        >A</span
+                style='${(filteredArray[i].photoURL == '') ? `background: ${gradients[randomIndex]};` : `background-image: url(${filteredArray[i].photoURL});`}'
+                        class="icon d-flex justif
+                        y-content-center align-items-center text-white me-2 fw-bold"
+                        ><span class='opacity-${(filteredArray[i].photoURL == '') ? '100' : '0'}'>${getName(filteredArray[i].fullName)}</span></span
                       >
                       <div>
                         <h4 class="fw-semibold name mb-0">${filteredArray[i].fullName}</h4>
@@ -663,8 +693,42 @@ function findFullName(input){
   }
 }
 
+// 12) Take a Photo from user
+function uplaodPhoto(input) {
+  if (input.files && input.files[0]) {
+    const reader = new FileReader();
+    const img = document.getElementById("previewImage");
+    const icon = document.querySelector(".profile-photo i");
+
+    reader.onload = function (e) {
+      img.src = e.target.result;
+      uploadedPhotoURL=e.target.result;
+      img.classList.remove("d-none");
+      icon.classList.add("d-none");
+    };
+
+    reader.readAsDataURL(input.files[0]);
+  }
+}
+
+
+// 13) Return Name to Show
+function getName(name) {
+    if (!name) return '';
+    const words = name.trim().split(' ');
+    if (words.length === 1) {
+        return words[0].slice(0, 2).toUpperCase();
+    } else {
+        return words.map(word => word[0].toUpperCase()).join('');
+    }
+}
+
+
 
 // Start Main Logic
 init();
+
+
+
 
 

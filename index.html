@@ -74,6 +74,23 @@
               ></button>
             </div>
             <div class="modal-body">
+              <div class="mb-3 text-center">
+                <div class="profile-photo mx-auto mb-2">
+                  <img id="previewImage" src="" alt="" class="d-none" />
+                  <i class="fa-solid fa-user"></i>
+                </div>
+
+                <label class="change-photo-btn mt-2">
+                  <i class="fa-solid fa-camera me-2"></i> Change Photo
+                  <input
+                    type="file"
+                    accept="image/*"
+                    hidden
+                    onchange="uplaodPhoto(this)"
+                  />
+                </label>
+              </div>
+
               <div class="mb-3">
                 <div class="rounded-3 bg-white">
                   <label class="mb-2" for="fullName">
@@ -265,6 +282,7 @@
             <div class="modal-header">
               <h1 class="modal-title fw-bold" id="exampleModalLabel1">
                 Edit Contact
+                <span class="text-danger fw-normal"> (Edit only Data) </span>
               </h1>
               <button
                 type="button"
